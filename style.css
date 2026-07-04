@@ -2016,3 +2016,131 @@ body.loaded #curtain { transform: translateY(-101%); }
     .wall-board, .desk-scene { width: calc(100% + 6vw); margin-left: -3vw; }
     .desk-light { bottom: 58%; width: 90%; }
 }
+
+/* =========================================================
+   v8 — images always visible, magnifier, meowable cat,
+   draggable desk items, focus-box removal, mega text
+   ========================================================= */
+
+/* ---------- NOTHING can hide an image anymore ---------- */
+.wipe, .panel-shot.wipe:not(.in) {
+    clip-path: none !important;
+    transition: none;
+}
+img { opacity: 1 !important; visibility: visible !important; }
+
+/* ---------- award: meta + reflection, bigger ---------- */
+.award-meta { font-size: 1.12rem; }
+.award-note p { font-size: 1.45rem; line-height: 1.8; }
+.award-note p::first-letter { font-size: 4.4rem; }
+
+/* ---------- solar chips (React … Davao Light TOU) ---------- */
+.solar-chips span { font-size: 1rem !important; padding: 9px 18px; }
+.solar-sub { font-size: 1.1rem; }
+
+/* ---------- selected work: REALLY big ---------- */
+.panel-tag { font-size: 1rem; letter-spacing: 0.26em; }
+.panel-name { font-size: clamp(3.2rem, 7.4vw, 7rem); }
+.panel-desc { font-size: 1.42rem; line-height: 1.7; max-width: 720px; }
+.chips span { font-size: 0.95rem; padding: 8px 16px; }
+.panel-link { font-size: 1.12rem; padding: 14px 30px; }
+.journey-panel .panel-body { max-width: 900px; }
+.gb-top { font-size: 0.82rem; }
+.gb-hint { font-size: 0.8rem; }
+
+/* ---------- lit mode: card titles stay ink on their paper ---------- */
+.pin-card figcaption b { color: var(--ink) !important; }
+.pin-card figcaption span { color: #666 !important; }
+
+/* ---------- magnifier affordance on cards ---------- */
+.wall-guide {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--gold-deep, #b8912e);
+    color: #b8912e;
+    margin-top: 6px;
+}
+.wall.lit .wall-guide { color: var(--sun); }
+.pin-card { cursor: grab; }
+.pin-card::after {
+    content: "⌕";
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 34px; height: 34px;
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+    background: var(--sun);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.25s ease, transform 0.25s var(--bounce);
+    pointer-events: none;
+}
+.pin-card:hover::after { opacity: 1; transform: scale(1); }
+
+/* ---------- certificate lightbox ---------- */
+#cert-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(12, 9, 7, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px;
+    animation: fade-in 0.25s ease;
+}
+#cert-lightbox[hidden] { display: none; }
+#cert-lightbox img {
+    max-width: min(1200px, 96vw);
+    max-height: 82vh;
+    border: 3px solid var(--sun);
+    border-radius: 8px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+    animation: pop-in 0.3s var(--bounce);
+    background: #fff;
+}
+#cert-lightbox-cap {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--cream);
+}
+#cert-lightbox-close {
+    position: absolute;
+    top: 22px; right: 26px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--sun);
+    background: rgba(255, 214, 10, 0.12);
+    color: var(--sun);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+#cert-lightbox-close:hover { background: var(--sun); color: var(--ink); }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes pop-in { from { opacity: 0; transform: scale(0.92); } }
+
+/* ---------- no more black focus boxes on lamp/speaker/cat ---------- */
+.svg-btn, .cat, .svg-drag { outline: none !important; -webkit-tap-highlight-color: transparent; }
+.svg-btn:focus, .cat:focus, #speaker-btn:focus, #lamp-btn:focus { outline: none !important; }
+.svg-btn:focus-visible, .cat:focus-visible { outline: none !important; filter: drop-shadow(0 0 10px rgba(255, 214, 10, 0.9)); }
+
+/* ---------- draggable desk items & the meowable cat ---------- */
+.svg-drag { cursor: grab; }
+.svg-drag.held { cursor: grabbing; }
+.cat { cursor: pointer; }
+.cat.meow { animation: meow-hop 0.5s var(--bounce); }
+@keyframes meow-hop {
+    30% { transform: translate(305px, -10px); }
+    60% { transform: translate(305px, 2px); }
+    100% { transform: translate(305px, 0); }
+}
+
+@media (max-width: 640px) {
+    .panel-desc { font-size: 1.2rem; }
+    .award-note p { font-size: 1.2rem; }
+}

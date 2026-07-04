@@ -68,6 +68,7 @@ document.querySelectorAll('.drag').forEach((el) => {
         if (e.target.closest('a')) return;
         dragging = true;
         el.setPointerCapture(e.pointerId);
+        delete el.dataset.moved;
         [baseX, baseY] = getXY();
         startX = e.clientX;
         startY = e.clientY;
@@ -80,9 +81,10 @@ document.querySelectorAll('.drag').forEach((el) => {
 
     el.addEventListener('pointermove', (e) => {
         if (!dragging) return;
-        const nx = baseX + (e.clientX - startX);
-        const ny = baseY + (e.clientY - startY);
-        el.style.transform = `translate(${nx}px, ${ny}px)`;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.hypot(dx, dy) > 8) el.dataset.moved = '1';
+        el.style.transform = `translate(${baseX + dx}px, ${baseY + dy}px)`;
     });
 
     const drop = () => {
@@ -631,5 +633,130 @@ if (!('IntersectionObserver' in window)) {
     audio.addEventListener('ended', () => {
         btn.classList.remove('playing');
         btn.setAttribute('aria-pressed', 'false');
+    });
+})();
+
+/* =========================================================
+   v8 — visibility failsafe, certificate magnifier,
+   SVG desk-item dragging, the meow
+   ========================================================= */
+
+/* ---------- 13. Failsafe: nothing stays hidden ---------- */
+setTimeout(() => {
+    document.querySelectorAll('.reveal, .wipe, [data-split]').forEach((el) => el.classList.add('in'));
+}, 2000);
+
+/* ---------- 14. Certificate magnifier ---------- */
+(function certMagnifier() {
+    const box = document.getElementById('cert-lightbox');
+    if (!box) return;
+    const img = document.getElementById('cert-lightbox-img');
+    const cap = document.getElementById('cert-lightbox-cap');
+    const closeBtn = document.getElementById('cert-lightbox-close');
+    let lastFocus = null;
+
+    function open(src, alt, caption) {
+        lastFocus = document.activeElement;
+        img.src = src;
+        img.alt = alt || 'Certificate, magnified';
+        cap.textContent = caption || '';
+        box.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+    function close() {
+        box.hidden = true;
+        img.src = '';
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.pin-card').forEach((card) => {
+        card.addEventListener('click', () => {
+            if (card.dataset.moved) { delete card.dataset.moved; return; } // that was a drag
+            const im = card.querySelector('img');
+            const b = card.querySelector('figcaption b');
+            const s = card.querySelector('figcaption span');
+            if (im) open(im.src, im.alt, [b && b.textContent, s && s.textContent].filter(Boolean).join(' — '));
+        });
+    });
+
+    closeBtn.addEventListener('click', close);
+    box.addEventListener('click', (e) => { if (e.target === box) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+
+/* ---------- 15. Desk items: drag the books, mug, pencil, trophy, notes ---------- */
+(function svgDrag() {
+    const svg = document.querySelector('.desk-scene svg');
+    if (!svg) return;
+
+    svg.querySelectorAll('.svg-drag').forEach((g) => {
+        const base = g.getAttribute('transform') || '';
+        let sx = 0, sy = 0, ox = 0, oy = 0, held = false;
+
+        const toSvg = (e) => {
+            const pt = svg.createSVGPoint();
+            pt.x = e.clientX; pt.y = e.clientY;
+            const m = svg.getScreenCTM();
+            return m ? pt.matrixTransform(m.inverse()) : pt;
+        };
+
+        g.addEventListener('pointerdown', (e) => {
+            held = true;
+            g.classList.add('held');
+            g.setPointerCapture(e.pointerId);
+            const p = toSvg(e);
+            sx = p.x - ox;
+            sy = p.y - oy;
+            e.preventDefault();
+        });
+        g.addEventListener('pointermove', (e) => {
+            if (!held) return;
+            const p = toSvg(e);
+            ox = p.x - sx;
+            oy = p.y - sy;
+            g.setAttribute('transform', `translate(${ox.toFixed(1)} ${oy.toFixed(1)}) ${base}`);
+        });
+        const drop = () => { held = false; g.classList.remove('held'); };
+        g.addEventListener('pointerup', drop);
+        g.addEventListener('pointercancel', drop);
+    });
+})();
+
+/* ---------- 16. The cat meows. Of course it does. ---------- */
+(function catMeow() {
+    const cat = document.getElementById('cat-btn');
+    if (!cat) return;
+    let actx = null;
+
+    function meow() {
+        try {
+            actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+            const t = actx.currentTime;
+            const o = actx.createOscillator();
+            const g = actx.createGain();
+            o.type = 'triangle';
+            // a tiny "mrrow": rise, hold, droop
+            o.frequency.setValueAtTime(520, t);
+            o.frequency.linearRampToValueAtTime(860, t + 0.09);
+            o.frequency.linearRampToValueAtTime(700, t + 0.22);
+            o.frequency.linearRampToValueAtTime(340, t + 0.42);
+            g.gain.setValueAtTime(0.0001, t);
+            g.gain.exponentialRampToValueAtTime(0.28, t + 0.05);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.48);
+            o.connect(g).connect(actx.destination);
+            o.start(t);
+            o.stop(t + 0.5);
+        } catch (err) { /* audio blocked — the cat stays silent, as cats do */ }
+        cat.classList.remove('meow');
+        void cat.getBBox && cat.getBoundingClientRect(); // restart animation
+        cat.classList.add('meow');
+        setTimeout(() => cat.classList.remove('meow'), 550);
+    }
+
+    cat.addEventListener('click', meow);
+    cat.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); meow(); }
     });
 })();

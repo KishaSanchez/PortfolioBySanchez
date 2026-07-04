@@ -213,6 +213,7 @@
             small wins, collected with love — nothing on this wall is permanent
             <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
         </p>
+        <p class="wall-guide reveal">⌕ click any card to magnify the details · drag to rearrange</p>
 
         <div class="wall-board">
             <figure class="pin-card drag" style="--x: 4%; --y: 8%; --r: -4deg">
@@ -276,7 +277,7 @@
                         </g>
 
                         <!-- notebook stack -->
-                        <g transform="translate(120,0)">
+                        <g class="svg-drag" transform="translate(120,0)">
                             <rect x="0" y="306" width="150" height="26" rx="6" fill="#b56576"/>
                             <rect x="-2" y="280" width="154" height="26" rx="6" fill="#6ECBFF"/>
                             <rect x="4" y="252" width="148" height="28" rx="6" fill="#e05e2b"/>
@@ -288,7 +289,7 @@
                         </g>
 
                         <!-- the studio cat, off duty -->
-                        <g transform="translate(305,0)">
+                        <g class="cat" id="cat-btn" role="button" tabindex="0" aria-label="The studio cat — click for a meow" transform="translate(305,0)">
                             <path class="cat-tail" d="M16 318 q-24 -2 -18 -26" fill="none" stroke-width="9"/>
                             <path d="M18 330 q0 -34 46 -34 q46 0 46 34 z" fill="#e8916b"/>
                             <path d="M84 284 l-7 -15 l16 7 z" fill="#e8916b"/>
@@ -319,7 +320,7 @@
                         </g>
 
                         <!-- coffee, obviously -->
-                        <g transform="translate(600,0)">
+                        <g class="svg-drag" transform="translate(600,0)">
                             <path class="steam s1" d="M14 284 q7 -10 0 -20" fill="none" stroke="#9a938a" stroke-width="3.5"/>
                             <path class="steam s2" d="M32 286 q-7 -10 0 -22" fill="none" stroke="#9a938a" stroke-width="3.5"/>
                             <rect x="0" y="292" width="46" height="38" rx="6" fill="#2D2DFF"/>
@@ -328,18 +329,18 @@
                         </g>
 
                         <!-- pencil + sticky notes -->
-                        <g transform="translate(690,0)">
+                        <g class="svg-drag" transform="translate(690,0)">
                             <rect x="0" y="313" width="12" height="15" rx="4" fill="#FF4D9D"/>
                             <rect x="12" y="312" width="6" height="17" fill="#c9c2b2"/>
                             <rect x="18" y="312" width="82" height="17" fill="#FFD60A"/>
                             <path d="M100 312 L122 320.5 L100 329 Z" fill="#e8b96b"/>
                             <path d="M114 317.5 L122 320.5 L114 323.5 Z" fill="#121212" stroke="none"/>
                         </g>
-                        <g transform="rotate(-6 837 314)"><rect x="820" y="299" width="34" height="30" fill="#FFD60A" stroke-width="3"/></g>
-                        <g transform="rotate(7 866 320)"><rect x="852" y="306" width="29" height="25" fill="#ff9ec2" stroke-width="3"/></g>
+                        <g class="svg-drag" transform="rotate(-6 837 314)"><rect x="820" y="299" width="34" height="30" fill="#FFD60A" stroke-width="3"/></g>
+                        <g class="svg-drag" transform="rotate(7 866 320)"><rect x="852" y="306" width="29" height="25" fill="#ff9ec2" stroke-width="3"/></g>
 
                         <!-- a little trophy, for a little flex -->
-                        <g transform="translate(742,0)">
+                        <g class="svg-drag" transform="translate(742,0)">
                             <path class="trophy-shine" d="M30 246 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="#FFF6E9" stroke-width="2"/>
                             <path d="M8 262 h44 q3 24 -22 32 q-25 -8 -22 -32 z" fill="#d4af37"/>
                             <path d="M8 266 q-12 4 -2 14" fill="none"/>
@@ -644,6 +645,13 @@
         </div>
         <p class="footer-fine">© 2026 Kisha Ann Joy M. Sanchez · made with too much color, on purpose · Davao del Norte, PH</p>
     </footer>
+
+    <!-- certificate magnifier -->
+    <div id="cert-lightbox" hidden role="dialog" aria-modal="true" aria-label="Certificate viewer">
+        <button id="cert-lightbox-close" aria-label="Close viewer">✕</button>
+        <img id="cert-lightbox-img" src="" alt="Certificate, magnified">
+        <p id="cert-lightbox-cap"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
