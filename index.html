@@ -138,7 +138,7 @@
         <div class="award-grid">
             <figure class="award-cert drag reveal wipe" style="--r: -3deg">
                 <span class="tape" aria-hidden="true"></span>
-                <img src="images/ren-energy.jpg" alt="Certificate of Excellence — Ren-Energy, Best Embedded System Design, CCIS InnoVision 2026">
+                <img loading="lazy" decoding="async" src="images/ren-energy.jpg" alt="Certificate of Excellence — Ren-Energy, Best Embedded System Design, CCIS InnoVision 2026">
                 <figcaption>certificate of excellence · drag me around!</figcaption>
             </figure>
 
@@ -182,7 +182,7 @@
                 <div class="fact"><b>0.172</b><span>fairness (gini) — near-equal shares</span></div>
                 <div class="fact"><b>2×</b><span>ESP32 houses sharing live over MQTT</span></div>
                 <figure class="solar-snap">
-                    <img src="images/s12.jpg" alt="The finished kapitbahay model houses">
+                    <img loading="lazy" decoding="async" src="images/s12.jpg" alt="The finished kapitbahay model houses">
                     <figcaption>the kapitbahay houses ✦ final output</figcaption>
                 </figure>
             </aside>
@@ -192,7 +192,7 @@
         <div class="tv reveal" id="tv">
             <div class="tv-frame">
                 <div class="tv-screen" id="tv-screen" role="button" tabindex="0" aria-label="SolarKapitBahay gallery. Click or press enter for the next screen.">
-                    <img id="tv-img" src="images/s1.png" alt="SolarKapitBahay screenshot">
+                    <img loading="lazy" decoding="async" id="tv-img" src="images/s1.png" alt="SolarKapitBahay screenshot">
                     <div class="tv-static" id="tv-static" aria-hidden="true"></div>
                     <div class="tv-scanlines" aria-hidden="true"></div>
                     <span class="tv-channel" id="tv-channel">CH 01</span>
@@ -219,6 +219,7 @@
             <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
         </p>
         <p class="wall-guide reveal">⌕ click any card to magnify the details · drag to rearrange</p>
+        <button id="wall-reset" class="wall-reset" type="button">↺ reset the wall</button>
 
         <div class="wall-board">
             <figure class="pin-card drag" style="--x: 4%; --y: 8%; --r: -4deg">
@@ -431,8 +432,8 @@
                     <span class="aurora a2"></span>
                 </div>
 
-                <img class="sky-sun" id="sky-sun" src="images/sun.gif" alt="">
-                <img class="sky-asteroid" id="sky-asteroid" src="images/asteroid.gif" alt="">
+                <img loading="lazy" decoding="async" class="sky-sun" id="sky-sun" src="images/sun.gif" alt="">
+                <img loading="lazy" decoding="async" class="sky-asteroid" id="sky-asteroid" src="images/asteroid.gif" alt="">
             </div>
 
             <!-- content floats over the sky -->
@@ -494,7 +495,7 @@
                 <div class="chips"><span>Game mechanics</span><span>Learning UX</span></div>
             </div>
             <figure class="panel-shot drag wipe" style="--r: 3deg" data-speed="-0.04">
-                <img src="images/owtlette.jpg" alt="The Owtlette gamified learning platform">
+                <img loading="lazy" decoding="async" src="images/owtlette.jpg" alt="The Owtlette gamified learning platform">
             </figure>
 
             <!-- speaking of games... -->
@@ -545,7 +546,7 @@
                 <div class="chips"><span>Gov web</span><span>Accessibility</span><span>Information design</span></div>
             </div>
             <figure class="panel-shot drag wipe" style="--r: -3deg" data-speed="-0.04">
-                <img src="images/peeso.png" alt="PEESO Tagum City Hall government website">
+                <img loading="lazy" decoding="async" src="images/peeso.png" alt="PEESO Tagum City Hall government website">
             </figure>
 
             <div class="ground g-peeso" aria-hidden="true">
@@ -592,7 +593,7 @@
                 <div class="chips"><span>Inventory</span><span>CRUD</span><span>Reports</span></div>
             </div>
             <figure class="panel-shot drag wipe" style="--r: 2deg" data-speed="-0.04">
-                <img src="images/Macrina.png" alt="Macrina Melecio digital inventory management system">
+                <img loading="lazy" decoding="async" src="images/Macrina.png" alt="Macrina Melecio digital inventory management system">
             </figure>
 
             <div class="ground g-macrina" aria-hidden="true">
@@ -633,7 +634,7 @@
                 <a class="panel-link magnetic" href="https://kishasanchez27.github.io/LandingPage_Sanchez/" target="_blank" rel="noopener">visit live ↗</a>
             </div>
             <figure class="panel-shot drag wipe" style="--r: -2deg" data-speed="-0.04">
-                <img src="images/strokesense.png" alt="StrokeSense landing page — Halina't Sa StrokeSense hero with baybayin heritage artwork">
+                <img loading="lazy" decoding="async" src="images/strokesense.png" alt="StrokeSense landing page — Halina't Sa StrokeSense hero with baybayin heritage artwork">
             </figure>
 
             <div class="ground g-stroke" aria-hidden="true">
@@ -653,6 +654,21 @@
                         <path class="chalk ch4" pathLength="100" class="chalk-draw" d="M116 90 q8 -7 16 0 t16 0 t16 0 t16 0 t16 0"/>
                     </g>
                     <g class="dust" fill="#FFF6E9"><rect class="d1" x="230" y="64" width="3" height="3"/><rect class="d2" x="236" y="68" width="2" height="2"/></g>
+                    <!-- a student, very invested -->
+                    <g class="student">
+                        <rect x="34" y="106" width="12" height="12" fill="#e0a878"/>
+                        <rect x="32" y="100" width="16" height="7" fill="#121212"/>
+                        <rect x="32" y="118" width="16" height="18" fill="#FFD60A"/>
+                        <rect class="hand-up" x="48" y="96" width="5" height="22" fill="#e0a878"/>
+                        <rect x="26" y="136" width="28" height="6" fill="#8a5a33"/>
+                        <rect x="28" y="142" width="6" height="14" fill="#6e4526"/>
+                        <rect x="46" y="142" width="6" height="14" fill="#6e4526"/>
+                    </g>
+                    <g class="glyph-sparks" fill="#FFD60A" stroke="none">
+                        <path class="gs gs1" d="M136 26 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+                        <path class="gs gs2" d="M180 34 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+                        <path class="gs gs3" d="M224 28 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z"/>
+                    </g>
                     <!-- the writer, mid-lesson -->
                     <g class="writer">
                         <rect class="armWrite" x="230" y="56" width="26" height="6" fill="#ffcf9c"/>
@@ -691,7 +707,7 @@
     <!-- certificate magnifier -->
     <div id="cert-lightbox" hidden role="dialog" aria-modal="true" aria-label="Certificate viewer">
         <button id="cert-lightbox-close" aria-label="Close viewer">✕</button>
-        <img id="cert-lightbox-img" src="" alt="Certificate, magnified">
+        <img loading="lazy" decoding="async" id="cert-lightbox-img" src="" alt="Certificate, magnified">
         <p id="cert-lightbox-cap"></p>
     </div>
 

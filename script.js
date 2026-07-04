@@ -692,8 +692,8 @@ setTimeout(() => {
     if (!svg) return;
 
     svg.querySelectorAll('.svg-drag').forEach((g) => {
-        const base = g.getAttribute('transform') || '';
-        let sx = 0, sy = 0, ox = 0, oy = 0, held = false;
+        g.dataset.base = g.getAttribute('transform') || '';
+        let sx = 0, sy = 0, held = false;
 
         const toSvg = (e) => {
             const pt = svg.createSVGPoint();
@@ -707,16 +707,16 @@ setTimeout(() => {
             g.classList.add('held');
             g.setPointerCapture(e.pointerId);
             const p = toSvg(e);
-            sx = p.x - ox;
-            sy = p.y - oy;
+            sx = p.x - (parseFloat(g.dataset.ox) || 0);
+            sy = p.y - (parseFloat(g.dataset.oy) || 0);
             e.preventDefault();
         });
         g.addEventListener('pointermove', (e) => {
             if (!held) return;
             const p = toSvg(e);
-            ox = p.x - sx;
-            oy = p.y - sy;
-            g.setAttribute('transform', `translate(${ox.toFixed(1)} ${oy.toFixed(1)}) ${base}`);
+            g.dataset.ox = (p.x - sx).toFixed(1);
+            g.dataset.oy = (p.y - sy).toFixed(1);
+            g.setAttribute('transform', `translate(${g.dataset.ox} ${g.dataset.oy}) ${g.dataset.base}`);
         });
         const drop = () => { held = false; g.classList.remove('held'); };
         g.addEventListener('pointerup', drop);
@@ -865,4 +865,23 @@ setTimeout(() => {
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
+})();
+
+/* ---------- 21. Reset the wall — cards & desk back to tidy ---------- */
+(function wallReset() {
+    const btn = document.getElementById('wall-reset');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#wall .pin-card').forEach((card) => {
+            card.style.transform = '';
+            card.style.zIndex = '';
+            delete card.dataset.moved;
+            delete card.dataset.dragged;
+        });
+        document.querySelectorAll('.desk-scene .svg-drag').forEach((g) => {
+            g.setAttribute('transform', g.dataset.base || '');
+            delete g.dataset.ox;
+            delete g.dataset.oy;
+        });
+    });
 })();
