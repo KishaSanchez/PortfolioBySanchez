@@ -2327,3 +2327,84 @@ img { opacity: 1 !important; visibility: visible !important; }
     .deck-card { border-radius: 22px 22px 0 0; }
     .mega-fill { -webkit-text-stroke: 1.5px var(--ink); }
 }
+
+/* =========================================================
+   v11 — the threshold, living vignettes
+   ========================================================= */
+
+/* ---------- the threshold between the room and the work ---------- */
+.work-head {
+    text-align: center;
+    padding: 90px 6vw 50px;
+}
+.thread-divider { width: 100%; height: 30px; margin-bottom: 40px; }
+.work-head .mega-fill { margin-left: auto; margin-right: auto; }
+.work-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    color: #8a7c6a;
+    margin-top: 18px;
+    letter-spacing: 0.08em;
+}
+.bounce-arrow {
+    display: inline-block;
+    font-size: 2rem;
+    margin-top: 18px;
+    animation: arrow-bounce 1.6s ease-in-out infinite;
+}
+@keyframes arrow-bounce { 50% { transform: translateY(12px); } }
+
+/* ---------- PEESO: the jeepney route + city lights ---------- */
+.jeepney { animation: jeep-route 14s linear infinite; }
+@keyframes jeep-route {
+    from { transform: translateX(-70px); }
+    to   { transform: translateX(530px); }
+}
+.jeepney .hub { animation: hub-spin 0.28s steps(2) infinite; }
+@keyframes hub-spin { 50% { transform: translate(1px, 1px); } }
+.g-peeso g[fill="#FFD60A"] rect { animation: win-flicker 5s steps(1) infinite; }
+.g-peeso g[fill="#FFD60A"] rect:nth-child(2) { animation-delay: 1.4s; }
+.g-peeso g[fill="#FFD60A"] rect:nth-child(4) { animation-delay: 2.7s; }
+.g-peeso g[fill="#FFD60A"] rect:nth-child(5) { animation-delay: 3.9s; }
+@keyframes win-flicker { 0%, 88%, 100% { opacity: 1; } 90%, 96% { opacity: 0.25; } }
+
+/* ---------- Macrina: a shop that breathes ---------- */
+.shirt { transform-origin: center top; transform-box: fill-box; animation: shirt-sway 3.2s ease-in-out infinite alternate; }
+.shirt.sh2 { animation-delay: 0.5s; }
+.shirt.sh3 { animation-delay: 1.1s; }
+@keyframes shirt-sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.open-light { animation: open-blink 2.4s steps(1) infinite; }
+@keyframes open-blink { 0%, 60%, 100% { opacity: 1; } 62%, 78% { opacity: 0.2; } }
+.shopper { animation: shop-stroll 11s linear infinite; }
+@keyframes shop-stroll {
+    from { transform: translateX(30px); }
+    to   { transform: translateX(330px); }
+}
+.shopper .legA { animation: step-a 0.5s steps(2) infinite; }
+.shopper .legB { animation: step-b 0.5s steps(2) infinite; }
+
+/* ---------- StrokeSense: chalk that writes itself ---------- */
+.chalk {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: chalk-write 9s ease-in-out infinite;
+}
+.chalk.ch2 { animation-delay: 1.6s; }
+.chalk.ch3 { animation-delay: 3.2s; }
+.chalk.ch4 { animation-delay: 4.8s; }
+@keyframes chalk-write {
+    0% { stroke-dashoffset: 100; }
+    18%, 82% { stroke-dashoffset: 0; }
+    95%, 100% { stroke-dashoffset: 100; }
+}
+.dust rect { animation: dust-fall 2.2s ease-in infinite; opacity: 0; }
+.dust .d2 { animation-delay: 1s; }
+@keyframes dust-fall {
+    0% { opacity: 0; transform: translateY(0); }
+    15% { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(26px); }
+}
+
+/* ---------- the kid blinks ---------- */
+.kid-eye { animation: kid-blink 4.4s steps(1) infinite; }
+@keyframes kid-blink { 0%, 91%, 100% { opacity: 1; } 93%, 97% { opacity: 0; } }
