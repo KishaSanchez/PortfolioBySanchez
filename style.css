@@ -2264,3 +2264,66 @@ img { opacity: 1 !important; visibility: visible !important; }
     .panel-desc { font-size: 1.22rem; }
     .pixel-kid { width: 170px; top: -96px; }
 }
+
+/* =========================================================
+   v10 — readable headers, mega scroll-fill title,
+   sky-object separation, THE DECK
+   ========================================================= */
+
+/* ---------- accessibility: kickers you can actually read ---------- */
+.kicker { font-size: 1.08rem; letter-spacing: 0.24em; }
+
+/* ---------- mega scroll-fill title (outline → ink as you scroll) ---------- */
+.mega-fill {
+    font-family: 'Abril Fatface', serif;
+    font-weight: 400;
+    font-size: clamp(3.2rem, 11vw, 10.5rem);
+    line-height: 0.95;
+    color: transparent;
+    -webkit-text-stroke: 2.5px var(--ink);
+    background: linear-gradient(var(--ink), var(--ink)) no-repeat left center;
+    background-size: 0% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-top: 6px;
+    width: max-content;
+    max-width: 100%;
+}
+
+/* ---------- sun & asteroid: proper personal space ---------- */
+.sky-sun {
+    right: 5vw;
+    top: 18vh;
+}
+.sky-asteroid {
+    right: 10vw;
+    top: 48vh;
+    width: clamp(200px, 22vw, 380px);
+}
+
+/* ---------- THE DECK: projects stack over each other ---------- */
+.deck { position: relative; }
+.deck-card {
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
+    align-content: center;
+    border-radius: 36px 36px 0 0;
+    border: 3px solid var(--ink);
+    border-bottom: none;
+    box-shadow: 0 -18px 50px rgba(18, 18, 18, 0.35);
+    transform-origin: top center;
+    will-change: transform, filter;
+    overflow: hidden;
+}
+/* the screenshot leans into the title for that overlapped editorial look */
+.deck-card .panel-shot {
+    margin-left: -6%;
+    z-index: 1;
+}
+.deck-card .panel-body { position: relative; z-index: 2; }
+
+@media (max-width: 640px) {
+    .deck-card { border-radius: 22px 22px 0 0; }
+    .mega-fill { -webkit-text-stroke: 1.5px var(--ink); }
+}

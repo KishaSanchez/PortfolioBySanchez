@@ -488,13 +488,13 @@ if (!('IntersectionObserver' in window)) {
         space.style.transform = `translateY(${((1 - p) * 0.12 * vh).toFixed(1)}px)`;
         // sun sets upward and shrinks
         if (sun) {
-            sun.style.opacity = clamp01(1 - (p - 0.3) / 0.25);
+            sun.style.opacity = clamp01(1 - (p - 0.26) / 0.18); // fully gone by ~0.44
             sun.style.transform = `translateY(${(-p * 0.6 * vh).toFixed(1)}px) scale(${(1 - p * 0.35).toFixed(3)})`;
         }
         // asteroid rises in from below once we reach space
         if (asteroid) {
-            asteroid.style.opacity = clamp01((p - 0.55) / 0.2);
-            asteroid.style.transform = `translateY(${((1 - p) * 0.5 * vh).toFixed(1)}px) rotate(${(p * 14).toFixed(1)}deg)`;
+            asteroid.style.opacity = clamp01((p - 0.72) / 0.18); // only deep in space
+            asteroid.style.transform = `translateY(${((1 - p) * 0.9 * vh).toFixed(1)}px) rotate(${(p * 14).toFixed(1)}deg)`;
         }
     }
 
@@ -820,4 +820,49 @@ setTimeout(() => {
         }
         requestAnimationFrame(loop);
     })();
+})();
+
+/* =========================================================
+   v10 — sky-object timing, mega-fill title, deck stacking
+   ========================================================= */
+
+/* ---------- 19. Mega title inks itself in as you scroll ---------- */
+(function megaFill() {
+    const el = document.getElementById('work-mega');
+    if (!el) return;
+
+    function update() {
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // fill from when it enters (bottom) to when it sits 30% up the screen
+        const p = Math.min(Math.max((vh - r.top) / (vh * 0.85), 0), 1);
+        el.style.backgroundSize = `${(p * 100).toFixed(1)}% 100%`;
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+
+/* ---------- 20. The deck: covered cards sink back ---------- */
+(function deck() {
+    const cards = [...document.querySelectorAll('.deck-card')];
+    if (!cards.length) return;
+
+    function update() {
+        const vh = window.innerHeight;
+        cards.forEach((card, i) => {
+            const next = cards[i + 1];
+            if (!next) { card.style.transform = ''; card.style.filter = ''; return; }
+            const cover = Math.min(Math.max(1 - next.getBoundingClientRect().top / vh, 0), 1);
+            if (cover > 0.001 && !reduceMotion) {
+                card.style.transform = `scale(${(1 - cover * 0.06).toFixed(4)})`;
+                card.style.filter = `brightness(${(1 - cover * 0.32).toFixed(3)})`;
+            } else {
+                card.style.transform = '';
+                card.style.filter = '';
+            }
+        });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
 })();
