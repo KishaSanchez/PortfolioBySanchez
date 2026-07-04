@@ -437,7 +437,8 @@ body.cursor-drag .cursor-ring {
     border: 2px solid var(--ink);
     padding: 12px 12px 8px;
     box-shadow: 10px 10px 0 rgba(18,18,18,0.7);
-    max-width: 560px;
+    max-width: 720px;
+    width: clamp(480px, 70vw, 720px);
 }
 .award-cert .tape {
     position: absolute;
@@ -721,7 +722,8 @@ body.cursor-drag .cursor-ring {
     background: var(--paper);
     padding: 10px;
     box-shadow: 8px 8px 0 rgba(18,18,18,0.6);
-    max-width: 520px;
+    max-width: 680px;
+    width: clamp(320px, 60vw, 680px);
     justify-self: end;
 }
 .panel-art { justify-self: end; }
@@ -729,7 +731,7 @@ body.cursor-drag .cursor-ring {
 /* --- spinning-planet gifs (sun.gif / asteroid.gif) --- */
 .orb-slot { display: grid; place-items: center; }
 .orb {
-    width: clamp(180px, 22vw, 320px);
+    width: clamp(220px, 28vw, 420px);
     image-rendering: pixelated;
     filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.35));
     animation: orb-bob 5.5s ease-in-out infinite;
@@ -1102,15 +1104,15 @@ body.loaded #curtain { transform: translateY(-101%); }
 }
 .solar-sub {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 1rem;
     letter-spacing: 0.08em;
     color: var(--tangerine);
     margin-top: 10px;
 }
 .solar-desc {
     max-width: 760px;
-    font-size: 1.15rem;
-    line-height: 1.75;
+    font-size: 1.32rem;
+    line-height: 1.8;
     margin-top: 22px;
     color: #444;
 }
@@ -1540,19 +1542,19 @@ body.loaded #curtain { transform: translateY(-101%); }
     display: flex;
     align-items: baseline;
     gap: 14px;
-    padding: 10px 0;
+    padding: 14px 0;
     border-bottom: 2px dashed rgba(18, 18, 18, 0.2);
 }
 .fact b {
     font-family: 'Abril Fatface', serif;
     font-weight: 400;
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     color: var(--tangerine);
-    min-width: 108px;
+    min-width: 130px;
 }
 .fact span {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.74rem;
+    font-size: 0.88rem;
     color: #555;
     text-transform: lowercase;
 }
