@@ -1723,14 +1723,6 @@ body.loaded #curtain { transform: translateY(-101%); }
 .folder .armFold { animation: fold 1.4s steps(3) infinite; transform-origin: left center; }
 @keyframes fold { 33% { transform: translateY(-6px); } 66% { transform: translateY(2px); } }
 
-/* StrokeSense: the scribe & the floating strokes */
-.writer .armWrite { animation: scribble 0.8s ease-in-out infinite; transform-origin: left center; }
-@keyframes scribble { 50% { transform: translate(3px, 2px) rotate(4deg); } }
-.glyphs .gl { animation: glyph-float 3.4s ease-in-out infinite; }
-.glyphs .g2 { animation-delay: 0.7s; }
-.glyphs .g3 { animation-delay: 1.3s; }
-@keyframes glyph-float { 50% { transform: translateY(-8px); } }
-
 /* Owtlette: the kid & the comically large gameboy */
 .gameboy { position: relative; }
 .pixel-kid {
