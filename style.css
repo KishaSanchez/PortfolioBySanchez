@@ -1925,3 +1925,94 @@ body.loaded #curtain { transform: translateY(-101%); }
     .blend.b-thin { height: 34vh; }
     .desk-light { width: 94%; bottom: 50%; }
 }
+
+/* =========================================================
+   v7 — the big size-up: hero, digicam, award, solar, wall,
+   full-bleed desk & board, one-line titles, cone alignment
+   ========================================================= */
+
+/* ---------- hero: bigger sub, photo & terminal ---------- */
+.hero-sub {
+    font-size: clamp(1.3rem, 2.7vw, 1.9rem);
+    max-width: 780px;
+}
+.polaroid { width: clamp(190px, 21vw, 300px); }
+.polaroid figcaption { font-size: 0.8rem; padding-top: 8px; }
+.terminal { width: clamp(310px, 33vw, 480px); }
+.term-bar { font-size: 0.82rem; }
+#term-body { font-size: 0.95rem; min-height: 178px; padding: 14px 18px 20px; }
+
+/* ---------- about: digicam bigger, nudged left ---------- */
+.digicam { width: min(580px, 100%); margin-right: 4vw; }
+.cam-body { height: 232px; }
+.cam-lens { width: 130px; height: 130px; }
+.cam-caption { font-size: 0.9rem; }
+
+/* ---------- award: reflection text, louder ---------- */
+.award-note p { font-size: 1.32rem; line-height: 1.85; }
+.award-note p::first-letter { font-size: 4rem; }
+
+/* ---------- solar: everything up a size ---------- */
+.solar-title { font-size: clamp(3rem, 8vw, 6.6rem); }
+.solar-sub { font-size: 1rem; }
+.solar-desc { font-size: 1.32rem; max-width: 820px; }
+.solar-chips .tech-tag, .solar-chips span { font-size: 0.82rem; }
+.fact b { font-size: 2.3rem; min-width: 132px; }
+.fact span { font-size: 0.86rem; }
+.solar-snap figcaption { font-size: 0.82rem; }
+.tv-caption { font-size: 1.22rem; }
+.tv-dial button { font-size: 0.84rem; padding: 8px 14px; }
+.tv-channel { font-size: 1.1rem; }
+
+/* ---------- work panels: bigger names & body, NASA on one line ---------- */
+.panel-tag { font-size: 0.86rem; }
+.panel-name { font-size: clamp(2.8rem, 6.2vw, 5.8rem); margin-bottom: 22px; }
+.journey-panel .panel-name {
+    white-space: nowrap;      /* "NASA NEO Tracker" stays on one line */
+    width: max-content;
+    max-width: 94vw;
+}
+.journey-panel .panel-body { max-width: 820px; }
+.panel-desc { font-size: 1.24rem; max-width: 660px; }
+.chips span { font-size: 0.8rem; padding: 6px 14px; }
+.panel-link { font-size: 1rem; padding: 13px 26px; }
+
+/* ---------- the wall: bigger board, bigger cards, full-bleed ---------- */
+.wall-title { font-size: clamp(2.6rem, 7vw, 6rem); }
+.wall-hint { font-size: 0.95rem; }
+.wall-board,
+.desk-scene {
+    width: calc(100% + 9vw);
+    max-width: none;
+    margin-left: -4.5vw;
+}
+.wall-board { height: 880px; }
+.pin-card { width: clamp(250px, 28%, 370px); padding: 12px 12px 10px; }
+.pin-card figcaption b { font-size: 1.16rem; }
+.pin-card figcaption span { font-size: 0.76rem; }
+
+/* desk scene spans with the board; cone lives inside & tracks the lamp */
+.desk-scene { margin-right: 0; position: relative; }
+.desk-light {
+    position: absolute;
+    right: 12.5%;
+    bottom: 63%;
+    width: 55%;
+    height: 980px;
+    z-index: 2;
+    clip-path: polygon(100% 100%, 89% 100%, 0 0, 40% 0);
+}
+
+/* ---------- v7 responsive ---------- */
+@media (max-width: 900px) {
+    .wall-board { height: 1250px; }
+    .digicam { margin-right: 0; }
+}
+@media (max-width: 640px) {
+    .journey-panel .panel-name { white-space: normal; width: auto; }
+    .terminal { width: min(92vw, 400px); }
+    .wall-board { height: 1500px; }
+    .pin-card { width: min(82%, 320px); }
+    .wall-board, .desk-scene { width: calc(100% + 6vw); margin-left: -3vw; }
+    .desk-light { bottom: 58%; width: 90%; }
+}

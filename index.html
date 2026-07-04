@@ -50,7 +50,7 @@
         <!-- Draggable desk toys -->
         <div class="hero-stage" aria-hidden="false">
 
-            <figure class="sticker polaroid drag" style="--x: 55%; --y: 8%; --r: -7deg" data-depth="8">
+            <figure class="sticker polaroid drag" style="--x: 57%; --y: 4%; --r: -7deg" data-depth="8">
                 <img src="images/sanchez.jpg" alt="Kisha Ann Joy M. Sanchez">
                 <figcaption>hi, it's me!</figcaption>
             </figure>
@@ -66,7 +66,7 @@
             <div class="sticker smiley drag" style="--x: 76%; --y: 66%; --r: -10deg" data-depth="6">☻</div>
 
             <!-- Draggable CRT terminal -->
-            <div class="terminal drag" style="--x: 70%; --y: 30%; --r: -2deg" data-depth="4">
+            <div class="terminal drag" style="--x: 60%; --y: 30%; --r: -2deg" data-depth="4">
                 <div class="term-bar"><span></span><span></span><span></span> kisha.exe</div>
                 <pre id="term-body" aria-live="polite"></pre>
             </div>
@@ -103,7 +103,7 @@
             </h2>
             <div class="digicam reveal" id="me-frame">
                 <div class="cam-screen">
-                    <img src="images/me.gif" alt="Kisha reaching toward the camera to adjust its angle" onerror="this.closest('.digicam').style.display='none'">
+                    <img src="images/me.gif" alt="Kisha reaching toward the camera to adjust its angle">
                     <span class="cam-rec" aria-hidden="true">● REC</span>
                 </div>
                 <div class="cam-body" aria-hidden="true">
@@ -138,7 +138,6 @@
             </figure>
 
             <div class="award-note reveal">
-                <h3>a reflection</h3>
                 <p>
                     Receiving the Best Embedded System Design award at CCIS InnoVision 2026 was an
                     amazing opportunity to showcase the months of hard work our team poured into
@@ -248,14 +247,13 @@
 
             <figure class="pin-card drag" style="--x: 72%; --y: 54%; --r: 3deg">
                 <span class="pin"></span>
-                <img src="images/digi expo.jpg" alt="Davao Regional Digital Career award" loading="lazy">
+                <img src="images/digi%20expo.jpg" alt="Davao Regional Digital Career award" loading="lazy">
                 <figcaption><b>Digital Career Awardee</b><span>Davao regional participation</span></figcaption>
             </figure>
         </div>
 
         <!-- the study desk — one SVG, everything relative, nothing can drift -->
         <div class="desk" id="desk">
-            <div class="desk-light" aria-hidden="true"></div>
             <div class="desk-scene">
                 <svg viewBox="0 0 1100 560" role="img" aria-label="A cozy study desk with books, a sleeping cat, a speaker, coffee, a trophy, and a lamp">
                     <g stroke="#121212" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
@@ -291,14 +289,17 @@
 
                         <!-- the studio cat, off duty -->
                         <g transform="translate(305,0)">
-                            <path class="cat-tail" d="M18 320 q-22 -4 -16 -26" fill="none" stroke-width="9"/>
-                            <path d="M18 330 q-2 -36 44 -36 q44 0 44 36 z" fill="#e8916b"/>
-                            <circle cx="90" cy="302" r="17" fill="#e8916b"/>
-                            <path d="M78 290 l-4 -12 l12 6 z" fill="#e8916b"/>
-                            <path d="M98 288 l4 -12 l-12 6 z" fill="#e8916b"/>
-                            <path d="M84 303 q4 4 9 0" fill="none" stroke-width="3"/>
-                            <text class="zz z1" x="116" y="272" font-family="IBM Plex Mono, monospace" font-size="16" fill="#121212" stroke="none">z</text>
-                            <text class="zz z2" x="130" y="254" font-family="IBM Plex Mono, monospace" font-size="21" fill="#121212" stroke="none">z</text>
+                            <path class="cat-tail" d="M16 318 q-24 -2 -18 -26" fill="none" stroke-width="9"/>
+                            <path d="M18 330 q0 -34 46 -34 q46 0 46 34 z" fill="#e8916b"/>
+                            <path d="M84 284 l-7 -15 l16 7 z" fill="#e8916b"/>
+                            <path d="M110 284 l7 -15 l-16 7 z" fill="#e8916b"/>
+                            <circle cx="97" cy="299" r="19" fill="#e8916b"/>
+                            <path d="M88 300 q3.5 3.5 7 0" fill="none" stroke-width="3"/>
+                            <path d="M102 300 q3.5 3.5 7 0" fill="none" stroke-width="3"/>
+                            <path d="M95.5 306 l4 0 l-2 3 z" fill="#121212" stroke="none"/>
+                            <path d="M80 304 h-11 M114 304 h11" stroke-width="2"/>
+                            <text class="zz z1" x="124" y="268" font-family="IBM Plex Mono, monospace" font-size="17" fill="#121212" stroke="none">z</text>
+                            <text class="zz z2" x="140" y="248" font-family="IBM Plex Mono, monospace" font-size="22" fill="#121212" stroke="none">z</text>
                         </g>
 
                         <!-- bookshelf speaker (click me) -->
@@ -370,6 +371,7 @@
                         <rect x="960" y="366" width="28" height="184" fill="#7a4e2c"/>
                     </g>
                 </svg>
+                <div class="desk-light" aria-hidden="true"></div>
             </div>
         </div>
         <audio id="waiting-audio" src="images/waiting.mp3" preload="none"></audio>
@@ -416,8 +418,8 @@
                     <span class="aurora a2"></span>
                 </div>
 
-                <img class="sky-sun" id="sky-sun" src="images/sun.gif" alt="" onerror="this.style.display='none'">
-                <img class="sky-asteroid" id="sky-asteroid" src="images/asteroid.gif" alt="" onerror="this.style.display='none'">
+                <img class="sky-sun" id="sky-sun" src="images/sun.gif" alt="">
+                <img class="sky-asteroid" id="sky-asteroid" src="images/asteroid.gif" alt="">
             </div>
 
             <!-- content floats over the sky -->
