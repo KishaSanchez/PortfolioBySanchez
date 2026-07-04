@@ -11,6 +11,11 @@
 </head>
 <body>
 
+    <!-- Curtain preloader (Gunarto-style page transition) -->
+    <div id="curtain" aria-hidden="true">
+        <span class="curtain-word">KISHA <i>✦</i></span>
+    </div>
+
     <!-- Custom cursor (desktop only) -->
     <div class="cursor-dot" aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"></div>
@@ -30,7 +35,7 @@
     <!-- ================= HERO ================= -->
     <header id="top" class="hero">
         <div class="hero-eyebrow">
-            <span class="blink">●</span> HI THERE — NICE TO SEE YOU :)
+            <span class="blink">●</span> HI THERE — NICE TO SEE YOU
         </div>
 
         <h1 class="hero-title" aria-label="KISHA">
@@ -45,23 +50,23 @@
         <!-- Draggable desk toys -->
         <div class="hero-stage" aria-hidden="false">
 
-            <figure class="sticker polaroid drag" style="--x: 6%; --y: 16%; --r: -7deg" data-depth="8">
+            <figure class="sticker polaroid drag" style="--x: 55%; --y: 8%; --r: -7deg" data-depth="8">
                 <img src="images/sanchez.jpg" alt="Kisha Ann Joy M. Sanchez">
                 <figcaption>hi, it's me!</figcaption>
             </figure>
 
-            <div class="sticker pill drag" style="--x: 78%; --y: 12%; --r: 5deg" data-depth="-6">WHOA! ✦</div>
+            <div class="sticker pill drag" style="--x: 86%; --y: 5%; --r: 5deg" data-depth="-6">WHOA! ✦</div>
 
-            <div class="sticker star drag" style="--x: 86%; --y: 55%; --r: 12deg" data-depth="10">★</div>
+            <div class="sticker star drag" style="--x: 91%; --y: 48%; --r: 12deg" data-depth="10">★</div>
 
-            <div class="sticker note drag" style="--x: 3%; --y: 66%; --r: 4deg" data-depth="-8">
+            <div class="sticker note drag" style="--x: 56%; --y: 72%; --r: 4deg" data-depth="-8">
                 react · next.js · vue<br>supabase · esp32 · figma
             </div>
 
-            <div class="sticker smiley drag" style="--x: 68%; --y: 74%; --r: -10deg" data-depth="6">☻</div>
+            <div class="sticker smiley drag" style="--x: 76%; --y: 66%; --r: -10deg" data-depth="6">☻</div>
 
             <!-- Draggable CRT terminal -->
-            <div class="terminal drag" style="--x: 55%; --y: 30%; --r: -2deg" data-depth="4">
+            <div class="terminal drag" style="--x: 70%; --y: 30%; --r: -2deg" data-depth="4">
                 <div class="term-bar"><span></span><span></span><span></span> kisha.exe</div>
                 <pre id="term-body" aria-live="polite"></pre>
             </div>
@@ -77,68 +82,63 @@
         </div>
     </header>
 
-    <!-- Marquee -->
-    <div class="marquee m-pink" aria-hidden="true">
-        <div class="marquee-track">
-            <span>REACT ✦ NEXT.JS ✦ VUE ✦ SUPABASE ✦ ESP32 / IoT ✦ UI &amp; UX ✦ TAILWIND ✦ VERCEL ✦&nbsp;</span>
-            <span>REACT ✦ NEXT.JS ✦ VUE ✦ SUPABASE ✦ ESP32 / IoT ✦ UI &amp; UX ✦ TAILWIND ✦ VERCEL ✦&nbsp;</span>
-        </div>
-    </div>
-
-    <!-- Banderitas divider -->
-    <div class="banderitas" aria-hidden="true">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-            <path d="M0,8 Q600,28 1200,8" fill="none" stroke="#121212" stroke-width="2"/>
-            <g class="flags">
-                <polygon points="60,10 90,10 75,50" fill="#FF4D9D"/>
-                <polygon points="160,12 190,12 175,52" fill="#2D2DFF"/>
-                <polygon points="260,14 290,14 275,54" fill="#FFD60A"/>
-                <polygon points="360,15 390,15 375,55" fill="#FF6B2C"/>
-                <polygon points="460,16 490,16 475,56" fill="#9BE564"/>
-                <polygon points="560,16 590,16 575,56" fill="#FF4D9D"/>
-                <polygon points="660,16 690,16 675,56" fill="#6ECBFF"/>
-                <polygon points="760,15 790,15 775,55" fill="#FFD60A"/>
-                <polygon points="860,14 890,14 875,54" fill="#2D2DFF"/>
-                <polygon points="960,12 990,12 975,52" fill="#FF6B2C"/>
-                <polygon points="1060,10 1090,10 1075,50" fill="#9BE564"/>
-            </g>
+    <!-- wavy edge: hero → about -->
+    <div class="edge edge-sun" aria-hidden="true">
+        <svg viewBox="0 0 1200 70" preserveAspectRatio="none">
+            <path d="M0,42 C140,78 290,4 440,36 C590,68 740,6 890,40 C1030,72 1130,18 1200,34 L1200,70 L0,70 Z"/>
         </svg>
     </div>
+
 
     <!-- ================= ABOUT ================= -->
     <section id="about" class="about">
         <div class="about-blob" data-speed="-0.08" aria-hidden="true"></div>
         <p class="kicker reveal">n°01 — about</p>
-        <h2 class="statement reveal">
-            I'm <span class="squiggle">Kisha Ann Joy M. Sanchez</span> — a Computer Science student who
-            pours full effort and genuine <span class="hl-cobalt">appreciation</span> into every project
-            I touch. From a barangay heat-risk map to solar-powered IoT, I build things that are useful
-            first and <span class="hl-orange">delightful always</span>.
-        </h2>
+        <div class="about-grid">
+            <h2 class="statement reveal">
+                I'm <span class="squiggle">Kisha Ann Joy M. Sanchez</span> — a Computer Science student who
+                pours full effort and genuine <span class="hl-cobalt">appreciation</span> into every project
+                I touch. From a barangay heat-risk map to solar-powered IoT, I build things that are useful
+                first and <span class="hl-orange">delightful always</span>.
+            </h2>
+            <div class="digicam reveal" id="me-frame">
+                <div class="cam-screen">
+                    <img src="images/me.gif" alt="Kisha reaching toward the camera to adjust its angle" onerror="this.closest('.digicam').style.display='none'">
+                    <span class="cam-rec" aria-hidden="true">● REC</span>
+                </div>
+                <div class="cam-body" aria-hidden="true">
+                    <span class="cam-shutter"></span>
+                    <span class="cam-brand">KISHICAM <em>HS</em></span>
+                    <div class="cam-lens"><span class="lens-ring"></span><span class="lens-glass"></span></div>
+                    <span class="cam-flash"></span>
+                    <svg class="cam-spark" viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
+                </div>
+                <p class="cam-caption">hold on, let me fix the camera…</p>
+            </div>
+        </div>
 
         <div class="stats reveal">
             <div class="stat"><span class="stat-n" data-count="6">0</span><span class="stat-l">projects shipped</span></div>
             <div class="stat"><span class="stat-n" data-count="7">0</span><span class="stat-l">certifications</span></div>
             <div class="stat"><span class="stat-n" data-count="1">0</span><span class="stat-l">best embedded system design award</span></div>
-            <div class="stat"><span class="stat-n">∞</span><span class="stat-l">curiosity</span></div>
         </div>
     </section>
 
     <!-- ================= AWARD SPOTLIGHT ================= -->
     <section id="award" class="award">
         <p class="kicker light reveal">n°02 — the big one</p>
-        <h2 class="award-title reveal">BEST EMBEDDED<br>SYSTEM DESIGN <span class="trophy">🏆</span></h2>
+        <h2 class="award-title reveal" data-split>BEST EMBEDDED<br>SYSTEM DESIGN <span class="trophy">🏆</span></h2>
         <p class="award-meta reveal">Ren-Energy — Sultan, Sanchez &amp; Ulbenario · CCIS InnoVision 2026 · June 20, 2026</p>
 
         <div class="award-grid">
-            <figure class="award-cert drag reveal" style="--r: -3deg">
+            <figure class="award-cert drag reveal wipe" style="--r: -3deg">
                 <span class="tape" aria-hidden="true"></span>
-                <img src="images/cert-ren-energy.jpg" alt="Certificate of Excellence — Ren-Energy, Best Embedded System Design, CCIS InnoVision 2026">
+                <img src="images/ren-energy.jpg" alt="Certificate of Excellence — Ren-Energy, Best Embedded System Design, CCIS InnoVision 2026">
                 <figcaption>certificate of excellence · drag me around!</figcaption>
             </figure>
 
             <div class="award-note reveal">
-                <h3>Reflection</h3>
+                <h3>a reflection</h3>
                 <p>
                     Receiving the Best Embedded System Design award at CCIS InnoVision 2026 was an
                     amazing opportunity to showcase the months of hard work our team poured into
@@ -154,10 +154,62 @@
         </div>
     </section>
 
+
+    <!-- ================= LATEST BUILD: SOLARKAPITBAHAY ================= -->
+    <section id="solar" class="solar">
+        <p class="kicker reveal">n°03 — the latest build</p>
+        <div class="solar-head">
+            <div class="solar-info">
+                <h2 class="solar-title reveal" data-split>SolarKapitBahay</h2>
+                <p class="solar-sub reveal">by Ren-Energy · Sultan, Sanchez &amp; Ulbenario</p>
+                <p class="solar-desc reveal">
+                    A web-based simulation and IoT platform that optimizes community solar-battery sharing in
+                    rural Philippines — comparing allocation algorithms, selecting the best through TOPSIS, and
+                    pairing it with low-cost ESP32 hardware to deliver actionable savings and fairness insights
+                    for real barangays.
+                </p>
+                <div class="chips solar-chips reveal">
+                    <span>React</span><span>Supabase</span><span>ESP32</span><span>MQTT</span><span>TOPSIS</span><span>Greedy algorithm</span><span>Davao Light TOU</span>
+                </div>
+            </div>
+            <aside class="solar-side reveal">
+                <div class="fact"><b>₱1,184</b><span>projected household savings / month</span></div>
+                <div class="fact"><b>40%</b><span>less energy bought from the grid</span></div>
+                <div class="fact"><b>0.172</b><span>fairness (gini) — near-equal shares</span></div>
+                <div class="fact"><b>2×</b><span>ESP32 houses sharing live over MQTT</span></div>
+                <figure class="solar-snap">
+                    <img src="images/s12.jpg" alt="The finished kapitbahay model houses">
+                    <figcaption>the kapitbahay houses ✦ final output</figcaption>
+                </figure>
+            </aside>
+        </div>
+
+        <!-- KISHAVISION: retro TV screenshot viewer -->
+        <div class="tv reveal" id="tv">
+            <div class="tv-frame">
+                <div class="tv-screen" id="tv-screen" role="button" tabindex="0" aria-label="SolarKapitBahay gallery. Click or press enter for the next screen.">
+                    <img id="tv-img" src="images/s1.png" alt="SolarKapitBahay screenshot">
+                    <div class="tv-static" id="tv-static" aria-hidden="true"></div>
+                    <div class="tv-scanlines" aria-hidden="true"></div>
+                    <span class="tv-channel" id="tv-channel">CH 01</span>
+                </div>
+                <div class="tv-side" aria-hidden="false">
+                    <span class="tv-brand">KISHA·VISION</span>
+                    <button class="tv-btn" id="tv-prev" aria-label="Previous screen">▲</button>
+                    <button class="tv-btn" id="tv-next" aria-label="Next screen">▼</button>
+                    <span class="tv-knob" aria-hidden="true"></span>
+                    <span class="tv-grill" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                </div>
+            </div>
+            <p class="tv-caption"><span class="tv-tag" id="tv-tag">web app</span> <span id="tv-caption">Sign in — sharing the sun, together</span></p>
+            <div class="tv-dial" id="tv-dial" role="tablist" aria-label="Choose a screen"></div>
+        </div>
+    </section>
+
     <!-- ================= STICKER WALL (certificates) ================= -->
     <section id="wall" class="wall">
-        <p class="kicker reveal">n°03 — the wall</p>
-        <h2 class="wall-title reveal">CERTIFICATES <span class="shrik">&amp; achievements</span></h2>
+        <p class="kicker reveal">n°04 — the wall</p>
+        <h2 class="wall-title reveal" data-split>CERTIFICATES <span class="shrik">&amp; achievements</span></h2>
         <p class="wall-hint reveal">
             small wins, collected with love — nothing on this wall is permanent
             <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
@@ -166,19 +218,19 @@
         <div class="wall-board">
             <figure class="pin-card drag" style="--x: 4%; --y: 8%; --r: -4deg">
                 <span class="pin"></span>
-                <img src="images/cert-innovision-2026.png" alt="CCIS InnoVision 2026 participation certificate" loading="lazy">
+                <img src="images/innovision.png" alt="CCIS InnoVision 2026 participation certificate" loading="lazy">
                 <figcaption><b>CCIS InnoVision 2026</b><span>conference participation · jun 20, 2026</span></figcaption>
             </figure>
 
             <figure class="pin-card drag" style="--x: 36%; --y: 4%; --r: 3deg">
                 <span class="pin"></span>
-                <img src="images/cert-input-interaction.png" alt="Input and Interaction certificate — UC San Diego via Coursera" loading="lazy">
+                <img src="images/input_interaction.png" alt="Input and Interaction certificate — UC San Diego via Coursera" loading="lazy">
                 <figcaption><b>Input and Interaction</b><span>UC San Diego · Coursera · may 1, 2026</span></figcaption>
             </figure>
 
             <figure class="pin-card drag" style="--x: 68%; --y: 10%; --r: -2deg">
                 <span class="pin"></span>
-                <img src="images/cert-ux-design.png" alt="Introduction to User Experience Design certificate — Georgia Tech via Coursera" loading="lazy">
+                <img src="images/uxdesign.png" alt="Introduction to User Experience Design certificate — Georgia Tech via Coursera" loading="lazy">
                 <figcaption><b>Intro to UX Design</b><span>Georgia Tech · Coursera · may 29, 2026</span></figcaption>
             </figure>
 
@@ -200,87 +252,251 @@
                 <figcaption><b>Digital Career Awardee</b><span>Davao regional participation</span></figcaption>
             </figure>
         </div>
-    </section>
 
-    <!-- Marquee -->
-    <div class="marquee m-cobalt" aria-hidden="true">
-        <div class="marquee-track rev">
-            <span>SELECTED WORK ✦ SELECTED WORK ✦ SELECTED WORK ✦ SELECTED WORK ✦&nbsp;</span>
-            <span>SELECTED WORK ✦ SELECTED WORK ✦ SELECTED WORK ✦ SELECTED WORK ✦&nbsp;</span>
+        <!-- the study desk — one SVG, everything relative, nothing can drift -->
+        <div class="desk" id="desk">
+            <div class="desk-light" aria-hidden="true"></div>
+            <div class="desk-scene">
+                <svg viewBox="0 0 1100 560" role="img" aria-label="A cozy study desk with books, a sleeping cat, a speaker, coffee, a trophy, and a lamp">
+                    <g stroke="#121212" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+
+                        <!-- wall shelf -->
+                        <g transform="translate(60,30)">
+                            <rect x="16" y="44" width="16" height="52" fill="#FF4D9D"/>
+                            <rect x="34" y="52" width="14" height="44" fill="#2D2DFF"/>
+                            <rect x="50" y="40" width="18" height="56" fill="#FFD60A"/>
+                            <rect x="70" y="56" width="13" height="40" fill="#9BE564"/>
+                            <rect x="85" y="46" width="16" height="50" fill="#FF6B2C"/>
+                            <g transform="rotate(10 118 70)"><rect x="110" y="44" width="15" height="52" fill="#c23a6b"/></g>
+                            <rect x="142" y="58" width="46" height="38" rx="4" fill="#f7f2e7"/>
+                            <text x="153" y="84" font-family="IBM Plex Mono, monospace" font-size="17" fill="#121212" stroke="none">CS</text>
+                            <path d="M232 72 q-8 -18 6 -22 q14 4 6 22 z" fill="#9BE564"/>
+                            <rect x="222" y="72" width="30" height="24" rx="3" fill="#e8916b"/>
+                            <rect x="0" y="96" width="300" height="16" rx="5" fill="#8a5a33"/>
+                            <rect x="18" y="112" width="12" height="16" fill="#6e4526"/>
+                            <rect x="270" y="112" width="12" height="16" fill="#6e4526"/>
+                        </g>
+
+                        <!-- notebook stack -->
+                        <g transform="translate(120,0)">
+                            <rect x="0" y="306" width="150" height="26" rx="6" fill="#b56576"/>
+                            <rect x="-2" y="280" width="154" height="26" rx="6" fill="#6ECBFF"/>
+                            <rect x="4" y="252" width="148" height="28" rx="6" fill="#e05e2b"/>
+                            <rect x="86" y="259" width="46" height="14" rx="2" fill="#FFF6E9"/>
+                            <g fill="#121212" stroke="none">
+                                <circle cx="16" cy="258" r="2.6"/><circle cx="26" cy="258" r="2.6"/><circle cx="36" cy="258" r="2.6"/>
+                                <circle cx="10" cy="286" r="2.6"/><circle cx="20" cy="286" r="2.6"/><circle cx="30" cy="286" r="2.6"/>
+                            </g>
+                        </g>
+
+                        <!-- the studio cat, off duty -->
+                        <g transform="translate(305,0)">
+                            <path class="cat-tail" d="M18 320 q-22 -4 -16 -26" fill="none" stroke-width="9"/>
+                            <path d="M18 330 q-2 -36 44 -36 q44 0 44 36 z" fill="#e8916b"/>
+                            <circle cx="90" cy="302" r="17" fill="#e8916b"/>
+                            <path d="M78 290 l-4 -12 l12 6 z" fill="#e8916b"/>
+                            <path d="M98 288 l4 -12 l-12 6 z" fill="#e8916b"/>
+                            <path d="M84 303 q4 4 9 0" fill="none" stroke-width="3"/>
+                            <text class="zz z1" x="116" y="272" font-family="IBM Plex Mono, monospace" font-size="16" fill="#121212" stroke="none">z</text>
+                            <text class="zz z2" x="130" y="254" font-family="IBM Plex Mono, monospace" font-size="21" fill="#121212" stroke="none">z</text>
+                        </g>
+
+                        <!-- bookshelf speaker (click me) -->
+                        <g id="speaker-btn" class="svg-btn" role="button" tabindex="0" aria-label="Play a little tune">
+                            <g transform="translate(452,0)">
+                                <rect x="0" y="196" width="92" height="134" rx="10" fill="#3a2c22"/>
+                                <circle cx="46" cy="288" r="26" fill="#241b16"/>
+                                <circle cx="46" cy="288" r="15" fill="#d4af37"/>
+                                <circle cx="46" cy="288" r="5" fill="#241b16"/>
+                                <circle cx="46" cy="228" r="12" fill="#241b16"/>
+                                <circle cx="46" cy="228" r="5" fill="#d4af37"/>
+                                <g class="spk-waves" fill="none" stroke="#FF4D9D">
+                                    <path d="M104 244 a20 20 0 0 1 0 40"/>
+                                    <path d="M116 232 a34 34 0 0 1 0 64"/>
+                                </g>
+                            </g>
+                        </g>
+
+                        <!-- coffee, obviously -->
+                        <g transform="translate(600,0)">
+                            <path class="steam s1" d="M14 284 q7 -10 0 -20" fill="none" stroke="#9a938a" stroke-width="3.5"/>
+                            <path class="steam s2" d="M32 286 q-7 -10 0 -22" fill="none" stroke="#9a938a" stroke-width="3.5"/>
+                            <rect x="0" y="292" width="46" height="38" rx="6" fill="#2D2DFF"/>
+                            <path d="M46 300 q18 8 0 24" fill="none"/>
+                            <path d="M17 308 q6 -7 12 0 q-6 8 -12 0" fill="#FF4D9D" stroke-width="2.5"/>
+                        </g>
+
+                        <!-- pencil + sticky notes -->
+                        <g transform="translate(690,0)">
+                            <rect x="0" y="313" width="12" height="15" rx="4" fill="#FF4D9D"/>
+                            <rect x="12" y="312" width="6" height="17" fill="#c9c2b2"/>
+                            <rect x="18" y="312" width="82" height="17" fill="#FFD60A"/>
+                            <path d="M100 312 L122 320.5 L100 329 Z" fill="#e8b96b"/>
+                            <path d="M114 317.5 L122 320.5 L114 323.5 Z" fill="#121212" stroke="none"/>
+                        </g>
+                        <g transform="rotate(-6 837 314)"><rect x="820" y="299" width="34" height="30" fill="#FFD60A" stroke-width="3"/></g>
+                        <g transform="rotate(7 866 320)"><rect x="852" y="306" width="29" height="25" fill="#ff9ec2" stroke-width="3"/></g>
+
+                        <!-- a little trophy, for a little flex -->
+                        <g transform="translate(742,0)">
+                            <path class="trophy-shine" d="M30 246 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="#FFF6E9" stroke-width="2"/>
+                            <path d="M8 262 h44 q3 24 -22 32 q-25 -8 -22 -32 z" fill="#d4af37"/>
+                            <path d="M8 266 q-12 4 -2 14" fill="none"/>
+                            <path d="M52 266 q12 4 2 14" fill="none"/>
+                            <rect x="23" y="294" width="14" height="14" fill="#b8912e"/>
+                            <rect x="12" y="308" width="36" height="14" rx="3" fill="#8a5a33"/>
+                            <rect x="12" y="322" width="36" height="8" rx="2" fill="#6e4526"/>
+                        </g>
+
+                        <!-- the lamp (click me), aimed up-left at the wall -->
+                        <g id="lamp-btn" class="svg-btn" role="button" tabindex="0" aria-label="Toggle the desk lamp">
+                            <g transform="translate(900,0)">
+                                <path d="M70 316 L98 232" fill="none"/>
+                                <path d="M98 232 L44 202" fill="none"/>
+                                <circle cx="98" cy="232" r="7" fill="#FF4D9D"/>
+                                <g transform="rotate(-42 42 202)">
+                                    <path d="M42 202 L12 152 L72 152 Z" fill="#FF4D9D"/>
+                                    <circle class="lamp-bulb" cx="42" cy="160" r="11" fill="#c9c2b2"/>
+                                </g>
+                                <rect x="24" y="316" width="96" height="14" rx="7" fill="#2D2DFF"/>
+                            </g>
+                        </g>
+
+                        <!-- the table, holding it all together -->
+                        <rect x="40" y="330" width="1020" height="30" rx="8" fill="#8a5a33"/>
+                        <rect x="44" y="356" width="1012" height="12" fill="#6e4526" stroke="none"/>
+                        <rect x="100" y="366" width="28" height="184" fill="#7a4e2c"/>
+                        <rect x="530" y="366" width="28" height="184" fill="#7a4e2c"/>
+                        <rect x="960" y="366" width="28" height="184" fill="#7a4e2c"/>
+                    </g>
+                </svg>
+            </div>
         </div>
-    </div>
+        <audio id="waiting-audio" src="images/waiting.mp3" preload="none"></audio>
+    </section>
 
     <!-- ================= WORK ================= -->
     <section id="work" class="work">
+        <div class="work-head">
+            <p class="kicker reveal">n°05 — selected work</p>
+        </div>
 
-        <!-- 01 BanasUno — day scene: orange sky, clouds, sun -->
-        <article class="panel scene p-banas">
-            <div class="scene-sky" aria-hidden="true">
-                <span class="cloud c1"></span>
-                <span class="cloud c2"></span>
-                <span class="cloud c3"></span>
-                <span class="cloud c4"></span>
-            </div>
-            <span class="panel-index" data-speed="0.06">01</span>
-            <div class="panel-body">
-                <p class="panel-tag">web app · climate</p>
-                <h3 class="panel-name">BanasUno</h3>
-                <p class="panel-desc">
-                    Neighborhood heat awareness for Davao City — a color-coded risk map built on official
-                    PAGASA heat levels, with AI safety advisories, health-facility routing, and data dashboards.
-                    Heat is invisible; this makes it legible.
-                </p>
-                <div class="chips"><span>React</span><span>Vite</span><span>Express</span><span>Supabase</span><span>PAGASA API</span><span>Vercel</span></div>
-                <a class="panel-link magnetic" href="https://banasuno-frontend.vercel.app" target="_blank" rel="noopener">visit live ↗</a>
-            </div>
-            <div class="panel-art orb-slot" data-speed="-0.05" aria-hidden="true">
-                <img class="orb" src="images/sun.gif" alt="" onerror="this.style.display='none'">
-            </div>
-        </article>
+        <!-- blend: cream → morning orange, with clouds & birds -->
+        <div class="blend b-wall-day" aria-hidden="true">
+            <span class="cloud c1" data-speed="0.14"></span>
+            <span class="cloud c3" data-speed="0.24"></span>
+            <svg class="birds" data-speed="0.08" viewBox="0 0 400 90">
+                <g class="bird fly1"><path d="M0 10 Q6 0 12 10 Q18 0 24 10" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round"/></g>
+                <g class="bird fly2"><path d="M0 8 Q5 0 10 8 Q15 0 20 8" fill="none" stroke="#121212" stroke-width="2.5" stroke-linecap="round"/></g>
+                <g class="bird fly3"><path d="M0 7 Q4 0 8 7 Q12 0 16 7" fill="none" stroke="#121212" stroke-width="2" stroke-linecap="round"/></g>
+            </svg>
+        </div>
 
-        <!-- 02 NASA — night scene: pixel stars, northern lights, asteroid -->
-        <article class="panel scene p-night">
-            <div class="scene-sky" aria-hidden="true">
-                <span class="aurora a1"></span>
-                <span class="aurora a2"></span>
-                <span class="starfield s1"></span>
-                <span class="starfield s2"></span>
+        <!-- 01 + 02 — THE SKY JOURNEY: day → dusk → deep space, scroll-linked -->
+        <div class="sky-journey" id="sky-journey">
+
+            <!-- sticky sky: every layer moves at its own speed -->
+            <div class="sky-fix" aria-hidden="true">
+                <div class="sky-grad" id="sky-grad"></div>
+
+                <div class="sky-layer l-clouds" id="l-clouds">
+                    <span class="cloud c1"></span>
+                    <span class="cloud c2"></span>
+                    <span class="cloud c3"></span>
+                    <span class="cloud c4"></span>
+                </div>
+
+                <div class="sky-layer l-space" id="l-space">
+                    <span class="starfield s1"></span>
+                    <span class="starfield s2"></span>
+                    <span class="planet pl1"></span>
+                    <span class="planet pl2"></span>
+                    <span class="planet pl3"></span>
+                    <span class="aurora a1"></span>
+                    <span class="aurora a2"></span>
+                </div>
+
+                <img class="sky-sun" id="sky-sun" src="images/sun.gif" alt="" onerror="this.style.display='none'">
+                <img class="sky-asteroid" id="sky-asteroid" src="images/asteroid.gif" alt="" onerror="this.style.display='none'">
             </div>
-            <span class="panel-index" data-speed="0.06">02</span>
-            <div class="panel-body">
-                <p class="panel-tag">web app · space data</p>
-                <h3 class="panel-name">NASA NEO Tracker</h3>
-                <p class="panel-desc">
-                    Real-time near-Earth asteroid tracking plus an Astronomy Picture of the Day archive.
-                    Date filtering, graceful fallbacks, and a lot of staring at rocks hurtling past our planet.
-                </p>
-                <div class="chips"><span>Next.js</span><span>React</span><span>NASA API</span><span>Vercel</span></div>
-                <a class="panel-link magnetic" href="https://sanchez-p3-asteroids-data-qb4v.vercel.app" target="_blank" rel="noopener">visit live ↗</a>
-                <a class="panel-link ghost magnetic" href="https://github.com/kishasanchez27/sanchez_p3_asteroids_data" target="_blank" rel="noopener">github ↗</a>
+
+            <!-- content floats over the sky -->
+            <div class="journey-content">
+                <article class="panel journey-panel">
+                    <span class="panel-index" data-speed="0.06">01</span>
+                    <div class="panel-body">
+                        <p class="panel-tag">web app · climate</p>
+                        <h3 class="panel-name" data-split>BanasUno</h3>
+                        <p class="panel-desc">
+                            Neighborhood heat awareness for Davao City — a color-coded risk map built on official
+                            PAGASA heat levels, with AI safety advisories, health-facility routing, and data dashboards.
+                            Heat is invisible; this makes it legible.
+                        </p>
+                        <div class="chips"><span>React</span><span>Vite</span><span>Express</span><span>Supabase</span><span>PAGASA API</span><span>Vercel</span></div>
+                        <a class="panel-link magnetic" href="https://banasuno-frontend.vercel.app" target="_blank" rel="noopener">visit live ↗</a>
+                    </div>
+                </article>
+
+                <article class="panel journey-panel">
+                    <span class="panel-index" data-speed="0.06">02</span>
+                    <div class="panel-body">
+                        <p class="panel-tag">web app · space data</p>
+                        <h3 class="panel-name" data-split>NASA NEO Tracker</h3>
+                        <p class="panel-desc">
+                            Real-time near-Earth asteroid tracking plus an Astronomy Picture of the Day archive.
+                            Date filtering, graceful fallbacks, and a lot of staring at rocks hurtling past our planet.
+                        </p>
+                        <div class="chips"><span>Next.js</span><span>React</span><span>NASA API</span><span>Vercel</span></div>
+                        <a class="panel-link magnetic" href="https://sanchez-p3-asteroids-data-qb4v.vercel.app" target="_blank" rel="noopener">visit live ↗</a>
+                        <a class="panel-link ghost magnetic" href="https://github.com/kishasanchez27/sanchez_p3_asteroids_data" target="_blank" rel="noopener">github ↗</a>
+                    </div>
+                </article>
             </div>
-            <div class="panel-art orb-slot" data-speed="-0.05" aria-hidden="true">
-                <img class="orb" src="images/asteroid.gif" alt="" onerror="this.style.display='none'">
-            </div>
-        </article>
+        </div>
+
+        <!-- blend: re-entry from space into pink -->
+        <div class="blend b-space-pink" aria-hidden="true">
+            <span class="starfield s1" data-speed="0.16"></span>
+            <span class="starfield s2" data-speed="0.28"></span>
+            <span class="shooting-star"></span>
+        </div>
 
         <!-- 03 Owtlette — scene + playable Game Boy at the bottom -->
-        <article class="panel scene p-pink has-gameboy">
+        <article class="panel p-pink has-gameboy">
             <span class="panel-index" data-speed="0.06">03</span>
             <div class="panel-body">
                 <p class="panel-tag">edtech · gamified</p>
-                <h3 class="panel-name">The Owtlette</h3>
+                <h3 class="panel-name" data-split>The Owtlette</h3>
                 <p class="panel-desc">
                     Gamified education platform that turns lessons into play — game mechanics,
                     streaks, and rewards designed to keep students actually coming back.
                 </p>
                 <div class="chips"><span>Game mechanics</span><span>Learning UX</span></div>
             </div>
-            <figure class="panel-shot drag" style="--r: 3deg" data-speed="-0.04">
+            <figure class="panel-shot drag wipe" style="--r: 3deg" data-speed="-0.04">
                 <img src="images/owtlette.jpg" alt="The Owtlette gamified learning platform">
             </figure>
 
             <!-- speaking of games... -->
             <div class="gameboy">
+                <!-- pixel kid, borrowing a comically large gameboy -->
+                <svg class="pixel-kid" viewBox="0 0 34 36" shape-rendering="crispEdges" aria-hidden="true">
+                    <g class="kid-bob">
+                        <rect x="10" y="2" width="12" height="4" fill="#3a2a1c"/>
+                        <rect x="8" y="4" width="4" height="6" fill="#3a2a1c"/>
+                        <rect x="12" y="6" width="10" height="8" fill="#ffcf9c"/>
+                        <rect x="18" y="8" width="2" height="2" fill="#121212"/>
+                        <rect x="10" y="14" width="12" height="10" fill="#FFF6E9"/>
+                        <rect x="12" y="16" width="8" height="2" fill="#FF4D9D"/>
+                        <rect x="20" y="16" width="8" height="3" fill="#ffcf9c"/>
+                        <rect x="26" y="18" width="3" height="4" fill="#ffcf9c"/>
+                    </g>
+                    <rect x="8" y="24" width="16" height="6" fill="#2D2DFF"/>
+                    <rect x="6" y="30" width="8" height="4" fill="#ffcf9c"/>
+                    <rect x="20" y="30" width="8" height="4" fill="#ffcf9c"/>
+                    <rect x="4" y="32" width="6" height="3" fill="#121212"/>
+                    <rect x="24" y="32" width="6" height="3" fill="#121212"/>
+                </svg>
                 <div class="gb-shell">
                     <div class="gb-top">KISHA BOY <span>·</span> CAT DASH</div>
                     <div class="gb-screen-bezel">
@@ -295,46 +511,93 @@
             </div>
         </article>
 
+        <!-- blend: pink → cobalt -->
+        <div class="blend b-thin b-pink-cobalt" aria-hidden="true"></div>
+
         <!-- 04 PEESO -->
-        <article class="panel scene p-cobalt">
+        <article class="panel p-cobalt grounded">
             <span class="panel-index" data-speed="0.06">04</span>
             <div class="panel-body">
                 <p class="panel-tag">gov · public service</p>
-                <h3 class="panel-name">PEESO — Tagum City Hall</h3>
+                <h3 class="panel-name" data-split>PEESO — Tagum City Hall</h3>
                 <p class="panel-desc">
                     Official website for the Public Education and Employment Services Office —
                     public access to education programs and job services for an entire city.
                 </p>
                 <div class="chips"><span>Gov web</span><span>Accessibility</span><span>Information design</span></div>
             </div>
-            <figure class="panel-shot drag" style="--r: -3deg" data-speed="-0.04">
+            <figure class="panel-shot drag wipe" style="--r: -3deg" data-speed="-0.04">
                 <img src="images/peeso.png" alt="PEESO Tagum City Hall government website">
             </figure>
+
+            <div class="ground g-peeso" aria-hidden="true">
+                <svg viewBox="0 0 480 90" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges">
+                    <rect x="10" y="26" width="56" height="60" fill="#1d1d8f"/>
+                    <g fill="#FFD60A"><rect x="16" y="32" width="8" height="8"/><rect x="30" y="32" width="8" height="8"/><rect x="44" y="32" width="8" height="8"/><rect x="16" y="48" width="8" height="8"/><rect x="44" y="48" width="8" height="8"/><rect x="30" y="64" width="8" height="8"/></g>
+                    <rect x="90" y="38" width="90" height="48" fill="#f7f2e7"/>
+                    <rect x="86" y="30" width="98" height="8" fill="#121212"/>
+                    <g fill="#121212"><rect x="98" y="46" width="6" height="40"/><rect x="116" y="46" width="6" height="40"/><rect x="134" y="46" width="6" height="40"/><rect x="152" y="46" width="6" height="40"/><rect x="170" y="46" width="6" height="40"/></g>
+                    <rect x="132" y="10" width="4" height="20" fill="#121212"/>
+                    <rect class="flag" x="136" y="10" width="12" height="8" fill="#FF4D9D"/>
+                    <rect x="204" y="18" width="48" height="68" fill="#171766"/>
+                    <g fill="#6ECBFF"><rect x="210" y="24" width="8" height="8"/><rect x="226" y="24" width="8" height="8"/><rect x="210" y="40" width="8" height="8"/><rect x="226" y="40" width="8" height="8"/><rect x="210" y="56" width="8" height="8"/><rect x="226" y="56" width="8" height="8"/></g>
+                    <g class="walker wk1"><rect x="0" y="66" width="6" height="6" fill="#ffcf9c"/><rect x="-1" y="72" width="8" height="8" fill="#FFD60A"/><rect class="legA" x="0" y="80" width="3" height="6" fill="#121212"/><rect class="legB" x="4" y="80" width="3" height="6" fill="#121212"/><rect x="6" y="74" width="4" height="4" fill="#8a5a33"/></g>
+                    <g class="walker wk2"><rect x="0" y="64" width="6" height="6" fill="#e0a878"/><rect x="-1" y="70" width="8" height="10" fill="#f7f2e7"/><rect class="legA" x="0" y="80" width="3" height="6" fill="#2D2DFF"/><rect class="legB" x="4" y="80" width="3" height="6" fill="#2D2DFF"/></g>
+                    <g class="walker wk3"><rect x="0" y="66" width="6" height="6" fill="#ffcf9c"/><rect x="-1" y="72" width="8" height="8" fill="#FF4D9D"/><rect class="legA" x="0" y="80" width="3" height="6" fill="#121212"/><rect class="legB" x="4" y="80" width="3" height="6" fill="#121212"/></g>
+                    <rect x="0" y="86" width="480" height="4" fill="#121212"/>
+                </svg>
+            </div>
         </article>
 
+        <!-- blend: cobalt → lime -->
+        <div class="blend b-thin b-cobalt-lime" aria-hidden="true"></div>
+
         <!-- 05 Macrina -->
-        <article class="panel scene p-lime">
+        <article class="panel p-lime grounded">
             <span class="panel-index" data-speed="0.06">05</span>
             <div class="panel-body">
                 <p class="panel-tag">business · systems</p>
-                <h3 class="panel-name">Macrina Melecio</h3>
+                <h3 class="panel-name" data-split>Macrina Melecio</h3>
                 <p class="panel-desc">
                     Digital inventory management system — stock tracking, records, and reporting
                     for real business operations, built to replace paper for good.
                 </p>
                 <div class="chips"><span>Inventory</span><span>CRUD</span><span>Reports</span></div>
             </div>
-            <figure class="panel-shot drag" style="--r: 2deg" data-speed="-0.04">
+            <figure class="panel-shot drag wipe" style="--r: 2deg" data-speed="-0.04">
                 <img src="images/Macrina.png" alt="Macrina Melecio digital inventory management system">
             </figure>
+
+            <div class="ground g-macrina" aria-hidden="true">
+                <svg viewBox="0 0 360 96" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges">
+                    <!-- the clothes shop -->
+                    <rect x="40" y="24" width="280" height="68" fill="#f7f2e7"/>
+                    <rect x="34" y="14" width="292" height="12" fill="#121212"/>
+                    <g><rect x="40" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="60" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="80" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="100" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="120" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="140" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="160" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="180" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="200" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="220" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="240" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="260" y="26" width="20" height="10" fill="#f7f2e7"/><rect x="280" y="26" width="20" height="10" fill="#FF4D9D"/><rect x="300" y="26" width="20" height="10" fill="#f7f2e7"/></g>
+                    <!-- cashier counter + person -->
+                    <rect x="60" y="66" width="56" height="26" fill="#8a5a33"/>
+                    <rect x="66" y="60" width="14" height="8" fill="#c9c2b2"/>
+                    <g class="cashier"><rect x="88" y="42" width="10" height="10" fill="#ffcf9c"/><rect x="86" y="38" width="14" height="5" fill="#121212"/><rect x="86" y="52" width="14" height="14" fill="#9BE564"/><rect class="armTap" x="80" y="56" width="8" height="4" fill="#ffcf9c"/></g>
+                    <!-- clothes racks -->
+                    <g><rect x="150" y="52" width="40" height="6" fill="#121212"/><rect x="154" y="58" width="8" height="14" fill="#FF6B2C"/><rect x="166" y="58" width="8" height="14" fill="#2D2DFF"/><rect x="178" y="58" width="8" height="14" fill="#FFD60A"/></g>
+                    <!-- folder person + stack -->
+                    <g class="folder"><rect x="238" y="42" width="10" height="10" fill="#e0a878"/><rect x="236" y="36" width="14" height="7" fill="#3a2a1c"/><rect x="236" y="52" width="14" height="16" fill="#6ECBFF"/><rect class="armFold" x="250" y="50" width="10" height="4" fill="#e0a878"/></g>
+                    <rect x="262" y="60" width="20" height="5" fill="#FF4D9D"/><rect x="262" y="66" width="20" height="5" fill="#FFD60A"/><rect x="262" y="72" width="20" height="5" fill="#9BE564"/>
+                    <rect x="262" y="78" width="20" height="14" fill="#8a5a33"/>
+                    <rect x="0" y="92" width="360" height="4" fill="#121212"/>
+                </svg>
+            </div>
         </article>
 
+        <!-- blend: lime → sky -->
+        <div class="blend b-thin b-lime-sky" aria-hidden="true"></div>
+
         <!-- 06 StrokeSense -->
-        <article class="panel scene p-sky">
+        <article class="panel p-sky grounded">
             <span class="panel-index" data-speed="0.06">06</span>
             <div class="panel-body">
                 <p class="panel-tag">landing page · heritage</p>
-                <h3 class="panel-name">StrokeSense</h3>
+                <h3 class="panel-name" data-split>StrokeSense</h3>
                 <p class="panel-desc">
                     Responsive landing page for a Filipino heritage handwriting learning platform —
                     baybayin-inspired, HTML &amp; CSS only, zero frameworks, all craft.
@@ -342,22 +605,42 @@
                 <div class="chips"><span>HTML</span><span>CSS</span><span>Responsive</span></div>
                 <a class="panel-link magnetic" href="https://kishasanchez27.github.io/LandingPage_Sanchez/" target="_blank" rel="noopener">visit live ↗</a>
             </div>
-            <figure class="panel-shot drag" style="--r: -2deg" data-speed="-0.04">
+            <figure class="panel-shot drag wipe" style="--r: -2deg" data-speed="-0.04">
                 <img src="images/strokesense.png" alt="StrokeSense landing page — Halina't Sa StrokeSense hero with baybayin heritage artwork">
             </figure>
+
+            <div class="ground g-stroke" aria-hidden="true">
+                <svg viewBox="0 0 300 90" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges">
+                    <!-- floating baybayin-inspired strokes -->
+                    <g class="glyphs" fill="none" stroke="#121212" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path class="gl g1" d="M178 30 q7 -16 15 -4 q8 -12 15 4 q-5 13 -15 17 q-10 -4 -15 -17"/>
+                        <path class="gl g2" d="M226 40 q2 -14 9 -14 q5 0 5 7 q0 -7 5 -7 q7 0 9 14 M240 24 v-8 q6 -4 6 2"/>
+                        <path class="gl g3" d="M266 18 q14 -5 10 7 q-3 7 -10 7 q12 0 9 9 q-3 9 -14 7"/>
+                    </g>
+                    <!-- writer at a low desk -->
+                    <g class="writer"><rect x="60" y="34" width="12" height="12" fill="#ffcf9c"/><rect x="58" y="28" width="16" height="7" fill="#121212"/><rect x="58" y="46" width="16" height="16" fill="#c0563c"/><rect class="armWrite" x="74" y="52" width="12" height="4" fill="#ffcf9c"/></g>
+                    <rect x="52" y="62" width="72" height="6" fill="#8a5a33"/>
+                    <rect x="56" y="68" width="8" height="18" fill="#6b4226"/><rect x="112" y="68" width="8" height="18" fill="#6b4226"/>
+                    <rect x="86" y="54" width="26" height="8" fill="#f7f2e7"/>
+                    <rect x="0" y="86" width="300" height="4" fill="#121212"/>
+                </svg>
+            </div>
         </article>
     </section>
 
+    <!-- blend: sky → ink -->
+    <div class="blend b-thin b-sky-ink" aria-hidden="true"></div>
+
     <!-- ================= FOOTER ================= -->
     <footer id="contact" class="footer">
-        <p class="kicker light reveal">n°04 — say hi</p>
-        <h2 class="footer-giant reveal" aria-label="LET'S BUILD">LET'S<br>BUILD<span class="dot">.</span></h2>
+        <p class="kicker light reveal">n°06 — say hi</p>
+        <h2 class="footer-giant reveal" data-split aria-label="LET'S BUILD">LET'S<br>BUILD<span class="dot">.</span></h2>
         <p class="footer-line reveal">got a project, an internship, or a wild idea? my inbox is open.</p>
         <div class="footer-links reveal">
-            <a class="magnetic" href="https://github.com/KishaSanchez" target="_blank" rel="noopener">github ↗</a>
+            <a class="magnetic" href="https://github.com/kishasanchez27" target="_blank" rel="noopener">github ↗</a>
             <a class="magnetic" href="#top">back to top ↑</a>
         </div>
-        <p class="footer-fine">© 2026 Kisha Ann Joy M. Sanchez · Davao del Norte, PH</p>
+        <p class="footer-fine">© 2026 Kisha Ann Joy M. Sanchez · made with too much color, on purpose · Davao del Norte, PH</p>
     </footer>
 
     <script src="script.js"></script>

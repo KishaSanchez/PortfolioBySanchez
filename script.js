@@ -154,12 +154,12 @@ const termBody = document.getElementById('term-body');
 
 if (termBody) {
     const lines = [
-        '> who_am_i',
+        '> whoami',
         'kisha ann joy m. sanchez',
         '> role',
         'bscs student · app developer',
         '> location',
-        'davao del norte, ph',
+        'davao del norte, ph 🇵🇭',
         '> status',
         'building things that matter ✦'
     ];
@@ -199,8 +199,34 @@ const runCount = (el) => {
     })(t0);
 };
 
-/* ---------- 5b. Scroll reveals ---------- */
-const reveals = document.querySelectorAll('.reveal');
+/* ---------- 5b. Split-letter titles + scroll reveals ---------- */
+function splitLetters(el) {
+    let idx = 0;
+    const walk = (node) => {
+        [...node.childNodes].forEach((n) => {
+            if (n.nodeType === 3) {
+                const frag = document.createDocumentFragment();
+                [...n.textContent].forEach((ch) => {
+                    const s = document.createElement('span');
+                    s.className = 'ch';
+                    s.style.setProperty('--i', idx++);
+                    s.textContent = ch;
+                    frag.appendChild(s);
+                });
+                n.replaceWith(frag);
+            } else if (n.nodeType === 1 && n.tagName !== 'BR' && !n.classList.contains('trophy')) {
+                walk(n);
+            }
+        });
+    };
+    walk(el);
+}
+
+if (!reduceMotion) {
+    document.querySelectorAll('[data-split]').forEach(splitLetters);
+}
+
+const reveals = document.querySelectorAll('.reveal, .wipe, [data-split]');
 
 if (reduceMotion || !('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('in'));
@@ -398,4 +424,212 @@ if (!('IntersectionObserver' in window)) {
 
     reset();
     draw();
+})();
+
+/* =========================================================
+   v3 — curtain, sky journey, KISHA·VISION TV, desk lamp,
+   bookshelf speaker
+   ========================================================= */
+
+/* ---------- 8. Curtain preloader ---------- */
+(function curtain() {
+    const c = document.getElementById('curtain');
+    if (!c) return;
+    if (reduceMotion) { c.remove(); return; }
+    const open = () => {
+        document.body.classList.add('loaded');
+        setTimeout(() => c.remove(), 1400);
+    };
+    if (document.readyState === 'complete') {
+        setTimeout(open, 350);
+    } else {
+        window.addEventListener('load', () => setTimeout(open, 350));
+        // safety: never trap the user behind the curtain
+        setTimeout(open, 2600);
+    }
+})();
+
+/* ---------- 9. THE SKY JOURNEY — day → dusk → deep space ---------- */
+(function skyJourney() {
+    const journey = document.getElementById('sky-journey');
+    if (!journey) return;
+
+    const grad = document.getElementById('sky-grad');
+    const clouds = document.getElementById('l-clouds');
+    const space = document.getElementById('l-space');
+    const sun = document.getElementById('sky-sun');
+    const asteroid = document.getElementById('sky-asteroid');
+
+    const DAY   = ['#ff9a3d', '#ff6b2c', '#e8541f'];
+    const DUSK  = ['#ff5e7a', '#a83a8e', '#3b1f66'];
+    const SPACE = ['#1b1450', '#0e0e2e', '#050311'];
+
+    const hex = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+    const mix = (a, b, t) => {
+        const A = hex(a), B = hex(b);
+        return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(',')})`;
+    };
+    const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
+
+    function paint(p) {
+        const stops = p < 0.5
+            ? DAY.map((c, i) => mix(c, DUSK[i], p * 2))
+            : DUSK.map((c, i) => mix(c, SPACE[i], (p - 0.5) * 2));
+        grad.style.background = `linear-gradient(180deg, ${stops[0]}, ${stops[1]}, ${stops[2]})`;
+
+        const vh = window.innerHeight;
+        // clouds burn away as the day ends
+        clouds.style.opacity = clamp01(1 - p * 2.1);
+        clouds.style.transform = `translateY(${(-p * 0.22 * vh).toFixed(1)}px)`;
+        // the cosmos fades in, drifting slower (parallax depth)
+        space.style.opacity = clamp01((p - 0.4) / 0.3);
+        space.style.transform = `translateY(${((1 - p) * 0.12 * vh).toFixed(1)}px)`;
+        // sun sets upward and shrinks
+        if (sun) {
+            sun.style.opacity = clamp01(1 - (p - 0.3) / 0.25);
+            sun.style.transform = `translateY(${(-p * 0.6 * vh).toFixed(1)}px) scale(${(1 - p * 0.35).toFixed(3)})`;
+        }
+        // asteroid rises in from below once we reach space
+        if (asteroid) {
+            asteroid.style.opacity = clamp01((p - 0.55) / 0.2);
+            asteroid.style.transform = `translateY(${((1 - p) * 0.5 * vh).toFixed(1)}px) rotate(${(p * 14).toFixed(1)}deg)`;
+        }
+    }
+
+    if (reduceMotion) {
+        // static space scene, everything readable
+        paint(1);
+        return;
+    }
+
+    let ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const total = journey.offsetHeight - window.innerHeight;
+            const p = clamp01(-journey.getBoundingClientRect().top / Math.max(total, 1));
+            paint(p);
+            ticking = false;
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+})();
+
+/* ---------- 10. KISHA·VISION — SolarKapitBahay TV ---------- */
+(function kishaVision() {
+    const screen = document.getElementById('tv-screen');
+    if (!screen) return;
+
+    const img = document.getElementById('tv-img');
+    const stat = document.getElementById('tv-static');
+    const chan = document.getElementById('tv-channel');
+    const cap = document.getElementById('tv-caption');
+    const tag = document.getElementById('tv-tag');
+    const dial = document.getElementById('tv-dial');
+
+    const slides = [
+        { src: 'images/s1.png',  tag: 'web app',       cap: 'Sign in — "Sharing the sun, together"' },
+        { src: 'images/s2.png',  tag: 'web app',       cap: 'Operator dashboard — savings, grid reduction & fairness (Gini)' },
+        { src: 'images/s3.png',  tag: 'web app',       cap: 'Battery clustering — K-means on 16 households, live MQTT overlay' },
+        { src: 'images/s4.png',  tag: 'web app',       cap: 'Household dashboard — your share of community savings' },
+        { src: 'images/s5.png',  tag: 'web app',       cap: 'Live energy routing — the greedy algorithm at work' },
+        { src: 'images/s8.png',  tag: 'web app',       cap: 'Registered ESP32 devices & recent transfers over MQTT' },
+        { src: 'images/s9.png',  tag: 'web app',       cap: 'Simulation planner — tune households, battery & tariffs, then run' },
+        { src: 'images/s10.jpg', tag: 'documentation', cap: 'The build — two houses of wiring, breadboards & LCDs' },
+        { src: 'images/s11.jpg', tag: 'documentation', cap: 'Solar rig — panels, buck converters & a lot of jumper wires' },
+        { src: 'images/s12.jpg', tag: 'final output',  cap: 'The kapitbahay houses — sari-sari store details included' }
+    ];
+
+    let cur = 0;
+    let busy = false;
+
+    // build the dial
+    slides.forEach((s, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role', 'tab');
+        b.textContent = String(i + 1).padStart(2, '0') + (s.tag !== 'web app' ? ' ·' + (s.tag === 'documentation' ? ' docs' : ' final') : '');
+        b.addEventListener('click', () => show(i));
+        dial.appendChild(b);
+    });
+
+    function sync() {
+        [...dial.children].forEach((b, i) => b.classList.toggle('on', i === cur));
+        chan.textContent = 'CH ' + String(cur + 1).padStart(2, '0');
+        tag.textContent = slides[cur].tag;
+        cap.textContent = slides[cur].cap;
+    }
+
+    function show(i) {
+        if (busy) return;
+        cur = (i + slides.length) % slides.length;
+        if (reduceMotion) {
+            img.src = slides[cur].src;
+            sync();
+            return;
+        }
+        busy = true;
+        stat.classList.add('zap'); // channel-change static
+        setTimeout(() => {
+            img.src = slides[cur].src;
+            sync();
+        }, 120);
+        setTimeout(() => {
+            stat.classList.remove('zap');
+            busy = false;
+        }, 340);
+    }
+
+    document.getElementById('tv-next').addEventListener('click', () => show(cur + 1));
+    document.getElementById('tv-prev').addEventListener('click', () => show(cur - 1));
+    screen.addEventListener('click', () => show(cur + 1));
+    screen.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+        if (e.key === 'ArrowRight') show(cur + 1);
+        if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+
+    sync();
+})();
+
+/* ---------- 11. The desk lamp — let there be (dramatic) light ---------- */
+(function lamp() {
+    const btn = document.getElementById('lamp-btn');
+    if (!btn) return;
+    const wall = document.getElementById('wall');
+
+    btn.addEventListener('click', () => {
+        const lit = wall.classList.toggle('lit');
+        btn.classList.toggle('on', lit);
+        btn.setAttribute('aria-pressed', String(lit));
+    });
+})();
+
+/* ---------- 12. Bookshelf speaker ---------- */
+(function speaker() {
+    const btn = document.getElementById('speaker-btn');
+    if (!btn) return;
+    const audio = document.getElementById('waiting-audio');
+
+    btn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                btn.classList.add('playing');
+                btn.setAttribute('aria-pressed', 'true');
+            }).catch(() => { /* file missing or autoplay blocked — stay quiet */ });
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            btn.classList.remove('playing');
+            btn.setAttribute('aria-pressed', 'false');
+        }
+    });
+    audio.addEventListener('ended', () => {
+        btn.classList.remove('playing');
+        btn.setAttribute('aria-pressed', 'false');
+    });
 })();

@@ -23,7 +23,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { font-size: 110%; scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
     font-family: 'Space Grotesk', sans-serif;
@@ -323,31 +323,6 @@ body.cursor-drag .cursor-ring {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* =========== marquee =========== */
-.marquee {
-    overflow: hidden;
-    border-top: 2px solid var(--ink);
-    border-bottom: 2px solid var(--ink);
-    padding: 12px 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1rem, 2.4vw, 1.6rem);
-    white-space: nowrap;
-}
-.m-pink { background: var(--pink); color: var(--cream); }
-.m-cobalt { background: var(--cobalt); color: var(--cream); }
-.marquee-track { display: inline-flex; animation: scroll-x 22s linear infinite; }
-.marquee-track.rev { animation-direction: reverse; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes scroll-x { to { transform: translateX(-50%); } }
-
-/* =========== banderitas =========== */
-.banderitas { background: var(--cream); line-height: 0; }
-.banderitas svg { width: 100%; height: 56px; }
-.flags polygon { transform-origin: top center; animation: sway 3.4s ease-in-out infinite alternate; }
-.flags polygon:nth-child(even) { animation-delay: 0.6s; }
-.flags polygon:nth-child(3n) { animation-delay: 1.1s; }
-@keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
 
 /* =========== about =========== */
 .about {
@@ -369,7 +344,7 @@ body.cursor-drag .cursor-ring {
 }
 
 .statement {
-    font-size: clamp(1.5rem, 3.6vw, 2.7rem);
+    font-size: clamp(1.7rem, 3.9vw, 3rem);
     font-weight: 500;
     line-height: 1.45;
     max-width: 20ch; /* forces dramatic ragging */
@@ -487,7 +462,7 @@ body.cursor-drag .cursor-ring {
     margin-bottom: 16px;
 }
 .award-note p {
-    font-size: 1.02rem;
+    font-size: 1.1rem;
     line-height: 1.85;
     color: rgba(255, 246, 233, 0.94);
 }
@@ -556,7 +531,7 @@ body.cursor-drag .cursor-ring {
 .pin-card figcaption { padding-top: 8px; }
 .pin-card figcaption b {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.3;
 }
 .pin-card figcaption span {
@@ -680,10 +655,10 @@ body.cursor-drag .cursor-ring {
     to   { transform: skewX(9deg) translateX(7%); }
 }
 
-.p-pink { background-color: var(--pink); }
-.p-cobalt { background-color: var(--cobalt); }
-.p-lime { background-color: var(--lime); }
-.p-sky { background-color: var(--sky); }
+.p-pink { background-color: var(--pink); color: var(--cream); }
+.p-cobalt { background-color: var(--cobalt); color: var(--cream); }
+.p-lime { background-color: var(--lime); color: var(--ink); }
+.p-sky { background-color: var(--sky); color: var(--ink); }
 
 .panel-index {
     position: absolute;
@@ -711,7 +686,7 @@ body.cursor-drag .cursor-ring {
     line-height: 1;
     margin-bottom: 18px;
 }
-.panel-desc { max-width: 520px; font-size: 1.02rem; margin-bottom: 20px; }
+.panel-desc { max-width: 580px; font-size: 1.12rem; margin-bottom: 22px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
 .chips span {
     font-family: 'IBM Plex Mono', monospace;
@@ -892,7 +867,6 @@ body.cursor-drag .cursor-ring {
         transition-duration: 0.001s !important;
     }
     .reveal { opacity: 1; transform: none; }
-    .marquee-track { animation: none; }
     .cursor-dot, .cursor-ring { display: none; }
 }
 
@@ -928,4 +902,1026 @@ body.cursor-drag .cursor-ring {
     .wall-board { height: 1350px; }
     .pin-card { width: min(78%, 280px); }
     .footer-giant { -webkit-text-stroke: 1.5px var(--cream); }
+}
+
+/* =========================================================
+   v3 additions — curtain, split reveals, sky journey,
+   wavy edges, me-frame, KISHA·VISION TV, the study desk
+   ========================================================= */
+
+/* ---------- curtain preloader ---------- */
+#curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    background: var(--cobalt);
+    display: grid;
+    place-items: center;
+    transform: translateY(0);
+    transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.25s;
+}
+.curtain-word {
+    font-family: 'Shrikhand', serif;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    color: var(--sun);
+    animation: curtain-pop 0.7s var(--bounce) both;
+}
+.curtain-word i { font-style: normal; color: var(--pink); }
+@keyframes curtain-pop {
+    from { opacity: 0; transform: scale(0.7) rotate(-6deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+body.loaded #curtain { transform: translateY(-101%); }
+
+/* ---------- split-letter title reveals ---------- */
+[data-split] .ch {
+    display: inline-block;
+    white-space: pre;
+    transform: translateY(118%);
+    opacity: 0;
+    transition: transform 0.7s var(--ease), opacity 0.45s ease;
+    transition-delay: calc(var(--i) * 26ms);
+}
+[data-split].in .ch,
+[data-split].in-split .ch {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ---------- image wipe reveals ---------- */
+.wipe {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s var(--ease) 0.15s;
+}
+.wipe.in { clip-path: inset(0 0 0 0); }
+
+/* ---------- wavy section edge ---------- */
+.edge { line-height: 0; }
+.edge svg { width: 100%; height: 64px; display: block; }
+.edge-sun { background: var(--sun); }
+.edge-sun path { fill: var(--cream); }
+
+/* ---------- THE SKY JOURNEY ---------- */
+.sky-journey { position: relative; }
+.sky-fix {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 1;
+}
+.sky-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #ff9a3d, #ff6b2c, #e8541f);
+}
+.sky-layer { position: absolute; inset: 0; }
+.l-space { opacity: 0; }
+
+.journey-content {
+    position: relative;
+    z-index: 2;
+    margin-top: -100svh;
+}
+.journey-panel {
+    background: transparent;
+    border-top: none;
+    color: var(--cream);
+    min-height: 100svh;
+    grid-template-columns: 1fr;
+    align-content: center;
+}
+.journey-panel .panel-body { max-width: 720px; }
+
+/* pixel planets */
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    image-rendering: pixelated;
+}
+.planet.pl1 {
+    width: 74px; height: 74px;
+    top: 16%; left: 12%;
+    background:
+        radial-gradient(circle at 32% 30%, #ffd60a 0 28%, transparent 29%),
+        linear-gradient(160deg, #ff9e6b 0 35%, #e05e2b 36% 70%, #8e2f16 71%);
+    box-shadow: 0 0 0 3px rgba(255, 214, 10, 0.25);
+}
+.planet.pl2 {
+    width: 46px; height: 46px;
+    top: 58%; left: 26%;
+    background: linear-gradient(120deg, #9BE564 0 45%, #3f8f4f 46% 75%, #1d4a2d 76%);
+}
+.planet.pl2::after {
+    content: "";
+    position: absolute;
+    inset: 32% -38%;
+    border: 3px solid rgba(255, 246, 233, 0.65);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+}
+.planet.pl3 {
+    width: 26px; height: 26px;
+    top: 34%; left: 58%;
+    background: linear-gradient(150deg, #6ECBFF 0 50%, #2D2DFF 51%);
+}
+
+.sky-sun, .sky-asteroid {
+    position: absolute;
+    right: 7vw;
+    top: 30vh;
+    width: clamp(180px, 22vw, 340px);
+    image-rendering: pixelated;
+    filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.35));
+}
+.sky-asteroid { opacity: 0; }
+
+/* ---------- work head ---------- */
+.work-head {
+    background: var(--cream);
+    padding: 60px 6vw 26px;
+}
+
+/* ---------- about grid + me.gif frame ---------- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 5vw;
+    align-items: center;
+}
+.me-frame {
+    position: relative;
+    justify-self: end;
+    width: min(340px, 100%);
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 12px 12px 10px;
+    box-shadow: 7px 7px 0 var(--ink);
+    transform: rotate(-7deg);
+    transform-origin: top center;
+}
+.me-nail {
+    position: absolute;
+    top: -9px; left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffe37a, #d4af37 60%, #8a6b00);
+    border: 2px solid var(--ink);
+    z-index: 2;
+}
+.me-frame img { width: 100%; border: 1px solid #ddd; }
+.me-frame figcaption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    text-align: center;
+    padding-top: 8px;
+    color: #666;
+}
+/* she reaches out and fixes the camera when you arrive */
+.me-frame.in { animation: straighten 1.6s var(--bounce) 0.45s both; }
+@keyframes straighten {
+    0%   { transform: rotate(-7deg); }
+    45%  { transform: rotate(3.5deg); }
+    72%  { transform: rotate(-1.6deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* ---------- SolarKapitBahay ---------- */
+.solar {
+    background: var(--paper);
+    padding: 110px 6vw 120px;
+    border-top: 2px solid var(--ink);
+}
+.solar-title {
+    font-family: 'Abril Fatface', serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 7vw, 5.6rem);
+    line-height: 1;
+    color: var(--ink);
+}
+.solar-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--tangerine);
+    margin-top: 10px;
+}
+.solar-desc {
+    max-width: 760px;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    margin-top: 22px;
+    color: #444;
+}
+.solar-chips { margin-top: 24px; color: var(--ink); }
+
+/* --- KISHA·VISION TV --- */
+.tv { margin-top: 56px; }
+.tv-frame {
+    display: grid;
+    grid-template-columns: 1fr 96px;
+    gap: 0;
+    background: #d9531e;
+    background: linear-gradient(160deg, #ff7a3c, #d9531e);
+    border: 3px solid var(--ink);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 10px 10px 0 var(--ink);
+    max-width: 1200px;
+}
+.tv-screen {
+    position: relative;
+    border: 3px solid var(--ink);
+    border-radius: 14px 4px 4px 14px;
+    overflow: hidden;
+    background: #111;
+    cursor: pointer;
+    aspect-ratio: 16 / 9.2;
+}
+.tv-screen:focus-visible { outline: 4px solid var(--sun); }
+.tv-screen img {
+    width: 100%; height: 100%;
+    object-fit: contain;   /* never crop a screenshot */
+    background: #0a0a0a;
+    display: block;
+}
+.tv-scanlines {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.07) 0 2px, transparent 2px 4px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+.tv-static {
+    position: absolute; inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    background:
+        repeating-conic-gradient(#bbb 0% 0.0001%, #222 0.0002% 0.0003%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.4) 0 1px, rgba(0,0,0,0.5) 1px 3px);
+    background-size: 7px 7px, 100% 100%;
+}
+.tv-static.zap { animation: static-zap 0.22s steps(3) both; }
+@keyframes static-zap {
+    0% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+.tv-channel {
+    position: absolute;
+    top: 10px; left: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: #b9ffb9;
+    text-shadow: 0 0 8px rgba(90, 255, 90, 0.9);
+    letter-spacing: 0.12em;
+}
+.tv-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0 6px 14px;
+}
+.tv-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 246, 233, 0.9);
+    writing-mode: vertical-rl;
+    margin-bottom: 2px;
+}
+.tv-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2.5px solid var(--ink);
+    background: var(--sun);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.15s var(--bounce), background-color 0.15s ease;
+}
+.tv-btn:hover { transform: scale(1.12) rotate(-6deg); background: var(--pink); color: var(--cream); }
+.tv-btn:active { transform: scale(0.94); }
+.tv-knob {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 2.5px solid var(--ink);
+    background: conic-gradient(from 40deg, #f7f2e7 0 20%, #c9c2b2 21% 100%);
+}
+.tv-grill { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+.tv-grill i { width: 40px; height: 3px; background: rgba(18, 18, 18, 0.55); border-radius: 2px; }
+
+.tv-caption {
+    margin-top: 18px;
+    font-size: 1.08rem;
+    max-width: 1200px;
+}
+.tv-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: var(--ink);
+    color: var(--sun);
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-right: 10px;
+    vertical-align: 2px;
+}
+.tv-dial {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    max-width: 1200px;
+}
+.tv-dial button {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: transform 0.15s var(--bounce), background-color 0.15s ease;
+}
+.tv-dial button:hover { transform: translateY(-2px); }
+.tv-dial button.on { background: var(--ink); color: var(--sun); }
+
+/* ---------- THE STUDY DESK ---------- */
+.wall { transition: background-color 0.9s ease, color 0.9s ease; position: relative; overflow: hidden; }
+
+.desk {
+    position: relative;
+    height: 460px;
+    margin-top: 26px;
+}
+.desk svg { user-select: none; display: block; }
+
+.desk-table {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: min(980px, 96%);
+    z-index: 1;
+}
+.desk-shelf {
+    position: absolute;
+    top: -6px; left: 6%;
+    width: clamp(160px, 22%, 260px);
+    z-index: 2;
+    animation: float 7s ease-in-out infinite;
+}
+.desk-books {
+    position: absolute;
+    left: 16%; top: 44%;
+    width: clamp(90px, 13%, 150px);
+    z-index: 3;
+}
+.desk-pencil {
+    position: absolute;
+    left: 46%; top: 62%;
+    width: clamp(70px, 10%, 120px);
+    z-index: 3;
+}
+.desk-speaker {
+    position: absolute;
+    left: 32%; top: 38%;
+    width: clamp(90px, 12%, 140px);
+    z-index: 3;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s var(--bounce);
+}
+.desk-speaker:hover { transform: scale(1.06) rotate(-2deg); }
+.desk-speaker svg { width: 100%; }
+.desk-speaker .wave {
+    position: absolute;
+    top: 30%; right: -14px;
+    width: 16px; height: 16px;
+    border: 3px solid var(--pink);
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+.desk-speaker .w2 { right: -26px; width: 28px; height: 28px; top: 22%; }
+.desk-speaker.playing .wave { animation: sound-wave 1.2s ease-out infinite; }
+.desk-speaker.playing .w2 { animation-delay: 0.25s; }
+@keyframes sound-wave {
+    0% { opacity: 0; transform: rotate(45deg) scale(0.6); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) scale(1.25); }
+}
+
+.desk-lamp {
+    position: absolute;
+    right: 8%; top: 26%;
+    width: clamp(110px, 15%, 180px);
+    z-index: 4;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s var(--bounce);
+}
+.desk-lamp:hover { transform: scale(1.05); }
+.desk-lamp img { width: 100%; }
+
+/* light cone from the lamp toward the board */
+.desk-light {
+    position: absolute;
+    right: 4%;
+    bottom: 46%;
+    width: 60%;
+    height: 780px;
+    background: linear-gradient(205deg, rgba(255, 214, 10, 0.34), rgba(255, 214, 10, 0.06) 55%, transparent 75%);
+    clip-path: polygon(96% 100%, 86% 100%, 0 0, 58% 0);
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* lamp ON: the room goes dark, the board glows */
+.wall.lit {
+    background-color: #14100d;
+    color: var(--cream);
+}
+.wall.lit .kicker { color: var(--sun); }
+.wall.lit .wall-hint { color: #b9a998; }
+.wall.lit .desk-light { opacity: 1; }
+.wall.lit .wall-board {
+    box-shadow:
+        0 0 0 2px var(--ink),
+        0 0 60px 6px rgba(255, 214, 10, 0.45),
+        8px 8px 0 rgba(255, 214, 10, 0.25);
+}
+.wall.lit .pin-card { box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.5); }
+.wall.lit .desk-table,
+.wall.lit .desk-shelf,
+.wall.lit .desk-books,
+.wall.lit .desk-pencil,
+.wall.lit .desk-speaker svg { filter: brightness(0.62); }
+.wall.lit .desk-lamp svg { filter: drop-shadow(0 0 26px rgba(255, 214, 10, 0.8)); }
+.desk-lamp svg .lamp-glow { transition: opacity 0.5s ease; }
+.desk-lamp.on svg .lamp-glow { opacity: 0.55; }
+.desk-lamp.on svg .lamp-bulb { fill: var(--sun); }
+.desk-lamp.on svg .lamp-head { fill: #ffe37a; }
+
+/* ---------- v3 responsive ---------- */
+@media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .me-frame { justify-self: center; margin-top: 34px; }
+    .tv-frame { grid-template-columns: 1fr 72px; padding: 14px; }
+    .desk { height: 400px; }
+}
+@media (max-width: 640px) {
+    .tv-frame { grid-template-columns: 1fr; }
+    .tv-side { flex-direction: row; padding: 12px 0 0; }
+    .tv-brand { writing-mode: horizontal-tb; margin: 0 auto 0 0; }
+    .tv-grill { display: none; }
+    .desk { height: 330px; }
+    .desk-light { width: 90%; }
+    .sky-sun, .sky-asteroid { width: 150px; top: 12vh; }
+}
+
+/* =========================================================
+   v4 — digicam, solar facts column, bigger calmer TV,
+   SVG desk alignment, blend strips, ground vignettes
+   ========================================================= */
+
+/* ---------- panels 03–06: colors are immediate now, blends do the transitioning ---------- */
+.p-pink, .p-cobalt { color: var(--cream); }
+.p-lime, .p-sky { color: var(--ink); }
+
+/* ---------- the digicam (about) ---------- */
+.digicam {
+    justify-self: end;
+    width: min(460px, 100%);
+    transform: rotate(-7deg);
+    transform-origin: top center;
+}
+.digicam.in { animation: straighten 1.6s var(--bounce) 0.45s both; }
+
+.cam-screen {
+    position: relative;
+    background: #121212;
+    border: 3px solid var(--ink);
+    border-radius: 12px 12px 4px 4px;
+    padding: 10px;
+    margin: 0 26px;
+    box-shadow: 6px 6px 0 rgba(18, 18, 18, 0.5);
+}
+.cam-screen img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    border: 2px solid #2c2c2c;
+}
+.cam-rec {
+    position: absolute;
+    top: 18px; left: 22px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: #ff5b5b;
+    text-shadow: 0 0 8px rgba(255, 70, 70, 0.9);
+    animation: blink 1.3s steps(1) infinite;
+}
+.cam-batt {
+    position: absolute;
+    top: 18px; right: 22px;
+    font-size: 0.66rem;
+    color: #9BE564;
+    letter-spacing: 1px;
+}
+.cam-hinge {
+    width: 90px;
+    height: 12px;
+    margin: 0 auto;
+    background: #d66a95;
+    border: 3px solid var(--ink);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+.cam-body {
+    position: relative;
+    background: linear-gradient(160deg, #ffb1cd, #ff8ab5);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    height: 190px;
+    margin-top: -3px;
+    box-shadow: 8px 8px 0 var(--ink);
+    overflow: hidden;
+}
+.cam-brand {
+    position: absolute;
+    top: 16px; right: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    font-weight: 600;
+}
+.cam-brand em, .cam-brand i { font-style: italic; color: #b23b6e; }
+.cam-lens {
+    position: absolute;
+    left: 50%; top: 52%;
+    transform: translate(-50%, -50%);
+    width: 104px; height: 104px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #6a6a6a, #262626 55%, #0d0d0d);
+    border: 4px solid var(--ink);
+    box-shadow: 0 0 0 8px #ffc6da, 0 0 0 11px var(--ink);
+}
+.cam-lens i, .cam-lens .lens-glass {
+    position: absolute;
+    inset: 26%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, #7db4ff 0 18%, #1b2a5e 45%, #05070f 80%);
+    border: 2px solid #000;
+}
+.cam-lens .lens-ring {
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.35);
+}
+.cam-shutter {
+    position: absolute;
+    top: -12px; left: 34px;
+    width: 54px; height: 16px;
+    background: #c9c2b2;
+    border: 3px solid var(--ink);
+    border-radius: 8px;
+}
+.cam-flash {
+    position: absolute;
+    top: 18px; left: 26px;
+    width: 30px; height: 18px;
+    border-radius: 5px;
+    background: linear-gradient(120deg, #fffbe6, #ffe27a);
+    border: 2.5px solid var(--ink);
+}
+.cam-decal, .cam-spark {
+    position: absolute;
+    bottom: 14px; left: 22px;
+    color: #b23b6e;
+    fill: #b23b6e;
+    font-size: 1rem;
+    width: 22px;
+}
+.cam-caption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    color: #666;
+    text-align: center;
+    margin-top: 14px;
+}
+
+/* ---------- solar: fill the right side ---------- */
+.solar-head, .solar-top {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4vw;
+    align-items: start;
+}
+.solar-side, .mission-card {
+    background: var(--cream);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 7px 7px 0 var(--ink);
+    rotate: 1.2deg;
+}
+.fact {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 2px dashed rgba(18, 18, 18, 0.2);
+}
+.fact b {
+    font-family: 'Abril Fatface', serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    color: var(--tangerine);
+    min-width: 108px;
+}
+.fact span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: #555;
+    text-transform: lowercase;
+}
+.solar-snap { margin-top: 18px; }
+.solar-snap img {
+    width: 100%;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+}
+.solar-snap figcaption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* ---------- TV: bigger screen, no cropping, calmer static ---------- */
+.tv-frame { max-width: 100%; }
+.tv-screen {
+    aspect-ratio: 16 / 9;
+    background: #0c0c0c;
+    border-radius: 14px 4px 4px 14px;
+}
+.tv-screen img {
+    object-fit: contain;   /* full screenshot, letterboxed — nothing cut off */
+    background: #0c0c0c;
+}
+.tv-static { opacity: 0; }
+.tv-static.zap { animation: static-zap-soft 0.26s steps(3) both; }
+@keyframes static-zap-soft {
+    0% { opacity: 0.45; }
+    100% { opacity: 0; }
+}
+.tv-scanlines {
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.09) 0 2px, transparent 2px 5px);
+}
+
+/* ---------- SVG desk: aligned to the tabletop ---------- */
+.desk { height: 500px; margin-top: 30px; }
+.desk svg { display: block; overflow: visible; }
+
+.desk-table {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    top: auto;
+    width: min(1040px, 97%);
+    height: 290px;   /* fixed height keeps the tabletop line predictable */
+}
+/* tabletop sits ~205px above the desk floor — everything rests on it */
+.desk-books   { left: 12%;  top: auto; bottom: 204px; width: clamp(110px, 15%, 168px); height: auto; }
+.desk-speaker { left: 30%;  top: auto; bottom: 202px; width: clamp(80px, 9%, 110px); }
+.desk-pencil  { left: 47%;  top: auto; bottom: 200px; width: clamp(100px, 12%, 150px); }
+.desk-lamp    { right: 7%; left: auto; top: auto; bottom: 198px; width: clamp(130px, 16%, 190px); }
+.desk-shelf   { left: 5%; top: -12px; width: clamp(180px, 24%, 280px); height: auto; }
+
+.desk-speaker, .desk-lamp { background: none; border: none; padding: 0; cursor: pointer; }
+.desk-speaker svg, .desk-lamp svg { width: 100%; height: auto; }
+
+/* lamp states */
+.lamp-bulb { transition: fill 0.4s ease; }
+.desk-lamp.on .lamp-bulb { fill: var(--sun); }
+.desk-lamp.on svg { filter: drop-shadow(0 0 24px rgba(255, 214, 10, 0.85)); }
+
+/* room goes dark: dim everything except the lamp and its light */
+.wall.lit .desk > *:not(.desk-lamp):not(.desk-light) { filter: brightness(0.55); }
+.wall.lit .digicam { filter: none; }
+.desk-light {
+    right: 9%;
+    bottom: 300px;
+    width: 62%;
+    height: 900px;
+    clip-path: polygon(97% 100%, 84% 100%, 0 0, 46% 0);
+}
+
+/* ---------- BLEND STRIPS: no more hard section cuts ---------- */
+.blend {
+    position: relative;
+    height: 46vh;
+    overflow: hidden;
+}
+.blend.b-thin { height: 22vh; }
+.b-wall-day   { background: linear-gradient(180deg, var(--cream) 0%, #ffe6bd 38%, #ffbe6e 70%, #ff9a3d 100%); }
+.b-space-pink { background: linear-gradient(180deg, #050311 0%, #3d1140 55%, #b02f78 82%, var(--pink) 100%); }
+.b-pink-cobalt{ background: linear-gradient(180deg, var(--pink), #8b3bd0 55%, var(--cobalt)); }
+.b-cobalt-lime{ background: linear-gradient(180deg, var(--cobalt), #2f8f8a 55%, var(--lime)); }
+.b-lime-sky   { background: linear-gradient(180deg, var(--lime), #8fdcc0 50%, var(--sky)); }
+.b-sky-ink    { background: linear-gradient(180deg, var(--sky), #3a5a72 55%, var(--ink)); }
+
+/* clouds & birds inside the wall→day blend */
+.b-wall-day .cloud.c1 { top: 34%; }
+.b-wall-day .cloud.c3 { top: 64%; }
+.birds {
+    position: absolute;
+    top: 22%;
+    left: -220px;
+    width: 220px;
+    animation: birds-cross 26s linear infinite;
+}
+.bird { animation: bird-bob 1.6s ease-in-out infinite; }
+.bird.fly2 { transform: translate(70px, 26px); animation-delay: 0.4s; }
+.bird.fly3 { transform: translate(150px, 10px); animation-delay: 0.9s; }
+@keyframes birds-cross {
+    to { transform: translateX(calc(100vw + 460px)); }
+}
+@keyframes bird-bob {
+    50% { translate: 0 -7px; }
+}
+
+/* shooting star in the space→pink blend */
+.b-space-pink .starfield { top: 12%; left: 6%; }
+.shooting-star {
+    position: absolute;
+    top: 18%;
+    left: -12%;
+    width: 130px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent, #fff);
+    transform: rotate(16deg);
+    animation: shoot 5.5s ease-in 1.2s infinite;
+    opacity: 0;
+}
+@keyframes shoot {
+    0% { opacity: 0; transform: translate(0, 0) rotate(16deg); }
+    4% { opacity: 1; }
+    16% { opacity: 0; transform: translate(70vw, 21vw) rotate(16deg); }
+    100% { opacity: 0; }
+}
+
+/* ---------- GROUND VIGNETTES: little worlds at each panel's feet ---------- */
+.grounded { padding-bottom: 190px; }
+.ground {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+.ground svg {
+    width: min(1100px, 94%);
+    height: 170px;
+    image-rendering: pixelated;
+    overflow: visible;
+}
+
+/* PEESO: flag waves, citizens commute */
+.g-peeso .flag { animation: flag-wave 1.6s steps(2) infinite; }
+@keyframes flag-wave { 50% { transform: translateY(2px) scaleX(0.85); } }
+.walker { animation: walk-across linear infinite; }
+.g-peeso .wk1 { animation-duration: 17s; }
+.g-peeso .wk2 { animation-duration: 23s; animation-delay: -8s; }
+.g-peeso .wk3 { animation-duration: 14s; animation-delay: -4s; }
+@keyframes walk-across {
+    from { transform: translateX(-30px); }
+    to   { transform: translateX(500px); }
+}
+.walker .legA { animation: step-a 0.5s steps(2) infinite; }
+.walker .legB { animation: step-b 0.5s steps(2) infinite; }
+@keyframes step-a { 50% { transform: translateY(-2px); } }
+@keyframes step-b { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(0); } }
+
+/* Macrina: the shop at work */
+.cashier .armTap { animation: tap 0.9s steps(2) infinite; transform-origin: right center; }
+@keyframes tap { 50% { transform: translateY(3px); } }
+.folder .armFold { animation: fold 1.4s steps(3) infinite; transform-origin: left center; }
+@keyframes fold { 33% { transform: translateY(-6px); } 66% { transform: translateY(2px); } }
+
+/* StrokeSense: the scribe & the floating strokes */
+.writer .armWrite { animation: scribble 0.8s ease-in-out infinite; transform-origin: left center; }
+@keyframes scribble { 50% { transform: translate(3px, 2px) rotate(4deg); } }
+.glyphs .gl { animation: glyph-float 3.4s ease-in-out infinite; }
+.glyphs .g2 { animation-delay: 0.7s; }
+.glyphs .g3 { animation-delay: 1.3s; }
+@keyframes glyph-float { 50% { transform: translateY(-8px); } }
+
+/* Owtlette: the kid & the comically large gameboy */
+.gameboy { position: relative; }
+.pixel-kid {
+    position: absolute;
+    left: 50%;
+    top: -108px;
+    transform: translateX(-50%);
+    width: 190px;
+    image-rendering: pixelated;
+    z-index: 0;
+}
+.kid-bob { animation: kid-bob 2.8s ease-in-out infinite; }
+@keyframes kid-bob { 50% { transform: translateY(3px); } }
+.gb-shell { position: relative; z-index: 1; }
+
+/* ---------- v4 responsive ---------- */
+@media (max-width: 900px) {
+    .solar-head, .solar-top { grid-template-columns: 1fr; }
+    .digicam { justify-self: center; margin-top: 30px; }
+    .desk { height: 430px; }
+    .desk-table { height: 240px; }
+    .desk-books, .desk-speaker, .desk-pencil, .desk-lamp { bottom: 168px; }
+    .desk-light { bottom: 240px; }
+    .grounded { padding-bottom: 160px; }
+}
+@media (max-width: 640px) {
+    .desk { height: 360px; }
+    .desk-table { height: 200px; }
+    .desk-books  { bottom: 140px; width: 100px; }
+    .desk-speaker{ bottom: 138px; width: 64px; left: 36%; }
+    .desk-pencil { bottom: 136px; width: 90px; left: 52%; }
+    .desk-lamp   { bottom: 134px; width: 110px; right: 4%; }
+    .desk-shelf  { width: 150px; }
+    .desk-light  { bottom: 200px; width: 92%; }
+    .pixel-kid { width: 150px; top: -86px; }
+    .ground svg { height: 130px; }
+    .grounded { padding-bottom: 140px; }
+    .blend { height: 30vh; }
+    .blend.b-thin { height: 16vh; }
+}
+
+/* =========================================================
+   v5 — desk alignment rail, up-left lamp light, longer
+   parallax blends, panel-shot safety
+   ========================================================= */
+
+/* the inner rail: exactly as wide as the table, everything aligns to it */
+.desk { height: 520px; }
+.desk-inner {
+    position: relative;
+    width: min(1040px, 97%);
+    height: 100%;
+    margin: 0 auto;
+}
+.desk-inner .desk-table { left: 0; transform: none; width: 100%; height: 290px; }
+
+/* tabletop plank top ≈ 232px above the floor; feet overlap 6px onto it */
+.desk-inner .desk-books   { left: 5%;  bottom: 226px; width: clamp(110px, 15%, 168px); }
+.desk-inner .desk-speaker { left: 27%; bottom: 224px; width: clamp(80px, 9%, 110px); }
+.desk-inner .desk-pencil  { left: 46%; bottom: 222px; width: clamp(100px, 12%, 150px); }
+.desk-inner .desk-lamp    { right: 2%; left: auto; bottom: 220px; width: clamp(150px, 18%, 210px); }
+.desk-inner .desk-shelf   { left: 2%; top: -16px; width: clamp(180px, 24%, 280px); }
+
+/* light cone: tip at the lamp head, spreading up-left toward the board */
+.desk-light {
+    right: 10%;
+    bottom: 330px;
+    width: 58%;
+    height: 880px;
+    clip-path: polygon(100% 100%, 87% 100%, 0 0, 42% 0);
+    background: linear-gradient(211deg, rgba(255, 214, 10, 0.38), rgba(255, 214, 10, 0.07) 55%, transparent 78%);
+}
+
+/* ---------- LONGER, statelier blends (real room to feel the parallax) ---------- */
+.blend { height: 92vh; }
+.blend.b-thin { height: 55vh; }
+.b-space-pink .starfield.s2 { top: 40%; left: 14%; }
+
+/* ---------- project screenshots are evidence — never hidden ---------- */
+.panel-shot { display: block !important; }
+.panel-shot img { display: block; width: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+    .panel-shot.wipe:not(.in) { clip-path: inset(0 100% 0 0); }
+}
+.panel-shot.wipe.in, .wipe.in { clip-path: inset(0 0 0 0) !important; }
+
+/* ---------- v5 responsive overrides ---------- */
+@media (max-width: 900px) {
+    .desk { height: 440px; }
+    .desk-inner .desk-table { height: 240px; }
+    .desk-inner .desk-books, .desk-inner .desk-speaker,
+    .desk-inner .desk-pencil { bottom: 188px; }
+    .desk-inner .desk-lamp { bottom: 186px; }
+    .desk-light { bottom: 270px; }
+    .blend { height: 64vh; }
+    .blend.b-thin { height: 38vh; }
+}
+@media (max-width: 640px) {
+    .desk { height: 370px; }
+    .desk-inner .desk-table { height: 200px; }
+    .desk-inner .desk-books  { bottom: 156px; width: 96px; left: 3%; }
+    .desk-inner .desk-speaker{ bottom: 154px; width: 60px; left: 30%; }
+    .desk-inner .desk-pencil { bottom: 152px; width: 84px; left: 48%; }
+    .desk-inner .desk-lamp   { bottom: 150px; width: 118px; right: 1%; }
+    .desk-inner .desk-shelf  { width: 150px; }
+    .desk-light { bottom: 216px; width: 92%; }
+    .blend { height: 44vh; }
+    .blend.b-thin { height: 26vh; }
+}
+
+/* =========================================================
+   v6 — no seam lines, longest blends, single-SVG desk
+   ========================================================= */
+
+/* kill the black seam lines between panels & blends in selected work */
+.work .panel, .work .blend { border-top: none; border-bottom: none; }
+.panel { border-top: none; }
+
+/* even longer, statelier transitions */
+.blend { height: 115vh; }
+.blend.b-thin { height: 72vh; }
+
+/* ---------- the one-SVG desk ---------- */
+.desk { height: auto; margin-top: 34px; position: relative; }
+.desk-scene {
+    width: min(1080px, 98%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+.desk-scene svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+.svg-btn { cursor: pointer; }
+.svg-btn:focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; border-radius: 8px; }
+.svg-btn:hover { filter: brightness(1.08); }
+
+/* cat: tail flick + drifting z's */
+.cat-tail { transform-origin: 323px 320px; animation: tail-flick 4.2s ease-in-out infinite; }
+@keyframes tail-flick { 0%, 78%, 100% { transform: rotate(0deg); } 86% { transform: rotate(14deg); } 93% { transform: rotate(-4deg); } }
+.zz { animation: zz-drift 3.2s ease-in-out infinite; opacity: 0; }
+.zz.z2 { animation-delay: 1.5s; }
+@keyframes zz-drift {
+    0% { opacity: 0; transform: translate(0, 4px); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translate(8px, -16px); }
+}
+
+/* coffee steam */
+.steam { animation: steam-rise 2.6s ease-in-out infinite; opacity: 0; }
+.steam.s2 { animation-delay: 1.2s; }
+@keyframes steam-rise {
+    0% { opacity: 0; transform: translateY(6px); }
+    35% { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* trophy sparkle */
+.trophy-shine { animation: shine-blink 3.8s steps(1) infinite; }
+@keyframes shine-blink { 0%, 82%, 100% { opacity: 0; } 84%, 96% { opacity: 1; } }
+
+/* speaker waves — only while playing */
+.spk-waves { opacity: 0; stroke-width: 5; }
+#speaker-btn.playing .spk-waves { opacity: 1; }
+#speaker-btn.playing .spk-waves path { animation: spk-pulse 1.1s ease-out infinite; }
+#speaker-btn.playing .spk-waves path:last-child { animation-delay: 0.22s; }
+@keyframes spk-pulse {
+    0% { opacity: 0; transform: translateX(-4px); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(5px); }
+}
+
+/* lamp on: bulb glows, head radiates */
+#lamp-btn .lamp-bulb { transition: fill 0.4s ease; }
+#lamp-btn.on .lamp-bulb { fill: var(--sun); }
+#lamp-btn.on { filter: drop-shadow(0 0 18px rgba(255, 214, 10, 0.9)); }
+
+/* room dark: dim the scene, spare the lamp (it out-glows the dim) */
+.wall.lit .desk-scene svg { filter: brightness(0.62); }
+.wall.lit #lamp-btn { filter: drop-shadow(0 0 22px rgba(255, 214, 10, 1)) brightness(1.9); }
+
+/* light cone re-anchored to the SVG lamp head (≈86% across, upper table) */
+.desk-light {
+    right: 11%;
+    bottom: 56%;
+    width: 60%;
+    height: 920px;
+    clip-path: polygon(100% 100%, 88% 100%, 0 0, 40% 0);
+}
+
+@media (max-width: 640px) {
+    .blend { height: 60vh; }
+    .blend.b-thin { height: 34vh; }
+    .desk-light { width: 94%; bottom: 50%; }
 }
