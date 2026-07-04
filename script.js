@@ -760,3 +760,64 @@ setTimeout(() => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); meow(); }
     });
 })();
+
+/* =========================================================
+   v9 — tilt-and-glare imagery + scroll-velocity skew
+   ========================================================= */
+
+/* ---------- 17. Screenshots tilt toward your cursor ---------- */
+(function tiltGlare() {
+    if (!finePointer || reduceMotion) return;
+
+    document.querySelectorAll('.panel-shot, .award-cert, .solar-snap').forEach((fig) => {
+        const img = fig.querySelector('img');
+        if (!img) return;
+
+        const glare = document.createElement('span');
+        glare.className = 'shot-glare';
+        glare.setAttribute('aria-hidden', 'true');
+        fig.appendChild(glare);
+
+        fig.addEventListener('pointermove', (e) => {
+            if (fig.dataset.moved || fig.classList.contains('lifted')) return; // not while dragging
+            const r = fig.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            fig.classList.add('tilting');
+            img.style.transform =
+                `perspective(950px) rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 11).toFixed(2)}deg) scale(1.035)`;
+            glare.style.background =
+                `radial-gradient(circle at ${(px + 0.5) * 100}% ${(py + 0.5) * 100}%, rgba(255,255,255,0.9), transparent 55%)`;
+        });
+
+        fig.addEventListener('pointerleave', () => {
+            fig.classList.remove('tilting');
+            img.style.transform = '';
+        });
+    });
+})();
+
+/* ---------- 18. Scroll-velocity skew — the page leans into speed ---------- */
+(function velocitySkew() {
+    if (reduceMotion) return;
+    const targets = document.querySelectorAll('.panel-body');
+    if (!targets.length) return;
+
+    let lastY = window.scrollY;
+    let skew = 0;
+
+    (function loop() {
+        const y = window.scrollY;
+        const v = y - lastY;
+        lastY = y;
+        const target = Math.max(-3.2, Math.min(3.2, v * 0.05));
+        skew += (target - skew) * 0.12;
+
+        if (Math.abs(skew) > 0.03) {
+            targets.forEach((el) => { el.style.transform = `skewY(${skew.toFixed(2)}deg)`; });
+        } else {
+            targets.forEach((el) => { el.style.transform = ''; });
+        }
+        requestAnimationFrame(loop);
+    })();
+})();
